@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Workout;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        Workout::query()->delete();
+        User::query()->delete();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory(10)->create();
+
+        Workout::create([
+            'date'=>date('2023-12-29'),
+            'title'=>"Chest day",
+            'notes'=>"Nema notes",
+            'rating'=>5
+        ]);
+        Workout::create([
+            'date'=>date('2023-12-31'),
+            'title'=>"Arm day",
+            'notes'=>"Biceps and triceps",
+            'rating'=>3
+        ]);
     }
 }
