@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workout__exercises', function (Blueprint $table) {
+        Schema::create('workout_exercises', function (Blueprint $table) {
             $table->unsignedBigInteger('workout_id');
             $table->unsignedBigInteger('exercise_id');
             $table->integer('weight');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workout__exercises');
+        Schema::dropIfExists('workout_exercises');
     }
 };

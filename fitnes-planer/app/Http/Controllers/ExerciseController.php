@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Workout;
+use App\Models\Exercise;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\WorkoutResource;
+use App\Http\Resources\ExerciseResource;
 use Illuminate\Http\Request;
 
-class WorkoutController extends Controller
+class ExerciseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,17 +36,15 @@ class WorkoutController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Workout $workout)
+    public function show(Exercise $exercise)
     {
-        $workout->load('exercises');
-        
-        return new WorkoutResource($workout);
+        return new ExerciseResource($exercise);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Workout $workout)
+    public function edit(Exercise $exercise)
     {
         //
     }
@@ -54,7 +52,7 @@ class WorkoutController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Workout $workout)
+    public function update(Request $request, Exercise $exercise)
     {
         //
     }
@@ -62,7 +60,7 @@ class WorkoutController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Workout $workout)
+    public function destroy(Exercise $exercise)
     {
         //
     }

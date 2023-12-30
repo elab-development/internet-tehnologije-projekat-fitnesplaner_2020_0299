@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\ExerciseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/workouts', [WorkoutController::class, 'index']);
+Route::resource('workouts', WorkoutController::class);
+Route::resource('exercises', ExerciseController::class);

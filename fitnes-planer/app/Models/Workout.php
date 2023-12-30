@@ -9,6 +9,8 @@ class Workout extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'workout_id';
+
     protected $fillable = [
         'date',
         'title',
@@ -17,6 +19,6 @@ class Workout extends Model
     ];
 
     public function exercises() {
-        return $this->belongsToMany(Exercise::class, 'workout_exercise', 'workout_id', 'exercise_id')->withPivot(['weight', 'sets', 'reps']);
+        return $this->belongsToMany(Exercise::class, 'workout_exercises', 'workout_id', 'exercise_id')->withPivot(['weight', 'sets', 'reps']);
     }
 }

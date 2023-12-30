@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Thiagoprz\EloquentCompositeKey\HasCompositePrimaryKey;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Workout_Exercise extends Model
+class WorkoutExercise extends Model
 {
-    use HasCompositePrimaryKey;
+    use HasFactory;
+
     protected $primaryKey = ['workout_id', 'exercise_id'];
     protected $fillable = [
         'workout_id',
