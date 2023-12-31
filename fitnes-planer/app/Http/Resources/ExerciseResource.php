@@ -7,6 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ExerciseResource extends JsonResource
 {
+    public static $wrap = 'exercise';
+
     /**
      * Transform the resource into an array.
      *

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Exercise;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ExerciseResource;
+use App\Http\Resources\ExerciseCollection;
 use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
@@ -14,15 +15,17 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        //
+        $exercises = Exercise::all();
+
+        return new ExerciseCollection($exercises);
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        //
+    {   
+
     }
 
     /**
@@ -30,7 +33,18 @@ class ExerciseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+            $name = $request->input('name');
+            $description = $request->input('description');
+
+            $exercise = new Exercise();
+            $exercise->name = $name;
+            $exercise->description = $description;
+
+            $exercise->save();
+
+            return response()->json(['message' => 'Exercise created successfully', 'data' => $exercise], 201);
+        }
     }
 
     /**

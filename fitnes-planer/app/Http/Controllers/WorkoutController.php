@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Workout;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WorkoutResource;
+use App\Http\Resources\WorkoutCollection;
 use Illuminate\Http\Request;
 
 class WorkoutController extends Controller
@@ -14,7 +15,9 @@ class WorkoutController extends Controller
      */
     public function index()
     {
-        //
+        $workouts = Workout::all();
+
+        return new WorkoutCollection($workouts);
     }
 
     /**
@@ -22,7 +25,7 @@ class WorkoutController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -30,7 +33,22 @@ class WorkoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->isMethod('post')) {
+            $date = $request->input('date');
+            $title = $request->input('title');
+            $notes = $request->input('notes');
+            $rating = $request->input('rating');
+
+            $workout = new Workout();
+            $workout->date = date($date);
+            $workout->title = $title;
+            $workout->notes = $notes;
+            $workout->rating = $rating;
+
+            $workout->save();
+
+            return response()->json(['message' => 'Workout created successfully', 'data' => $workout], 201);
+        }
     }
 
     /**
