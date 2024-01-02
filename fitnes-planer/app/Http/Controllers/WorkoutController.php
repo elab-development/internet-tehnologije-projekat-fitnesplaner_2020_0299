@@ -34,18 +34,18 @@ class WorkoutController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('post')) {
-            $date = $request->input('date');
-            $title = $request->input('title');
-            $notes = $request->input('notes');
-            $rating = $request->input('rating');
+            try {
+                $validatedData = $request->validate([
+                    'date' => 'required',
+                    'title' => 'required|string|max:255',
+                    'notes' => 'string',
+                    'rating' => 'numeric|between:1, 5'
+                ]);
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                return response()->json(['error' => $e->getMessage()], 422);
+            }
 
-            $workout = new Workout();
-            $workout->date = date($date);
-            $workout->title = $title;
-            $workout->notes = $notes;
-            $workout->rating = $rating;
-
-            $workout->save();
+            $workout = Workout::create($validatedData);
 
             return response()->json(['message' => 'Workout created successfully', 'data' => $workout], 201);
         }
@@ -74,7 +74,22 @@ class WorkoutController extends Controller
      */
     public function update(Request $request, Workout $workout)
     {
-        //
+        if ($request->isMethod('put') || $request->isMethod('patch')) {
+            try {
+                $validatedData = $request->validate([
+                    'date' => 'date_format:Y-m-d',
+                    'title' => 'string|max:255',
+                    'notes' => 'string',
+                    'rating' => 'numeric|between:1,5'
+                ]);
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                return response()->json(['error' => $e->getMessage()], 422);
+            }
+
+            $workout->update($validatedData);
+
+            return response()->json(['message' => 'Workout updated successfully!', 'data' => $workout], 200);
+        }
     }
 
     /**
@@ -82,6 +97,7 @@ class WorkoutController extends Controller
      */
     public function destroy(Workout $workout)
     {
-        //
+        $workout->delete();
+        return response()->json(['message' => 'Workout deleted successfully', 'data' => $workout], 201);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ExerciseResource;
 use App\Http\Resources\ExerciseCollection;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ExerciseController extends Controller
 {
@@ -34,14 +35,16 @@ class ExerciseController extends Controller
     public function store(Request $request)
     {
         if ($request->isMethod('post')) {
-            $name = $request->input('name');
-            $description = $request->input('description');
+            try {
+                $validatedData = $request->validate([
+                    'name' => 'required|string|max:255',
+                    'description' => 'required|string',
+                ]);
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                return response()->json(['error' => $e->getMessage()], 422);
+            }
 
-            $exercise = new Exercise();
-            $exercise->name = $name;
-            $exercise->description = $description;
-
-            $exercise->save();
+            $exercise = Exercise::create($validatedData);
 
             return response()->json(['message' => 'Exercise created successfully', 'data' => $exercise], 201);
         }
@@ -68,7 +71,20 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, Exercise $exercise)
     {
-        //
+        if ($request->isMethod('put') || $request->isMethod('patch')) {
+            try {
+                $validatedData = $request->validate([
+                    'name' => 'string|max:255',
+                    'description' => 'string',
+                ]);
+            } catch (\Illuminate\Validation\ValidationException $e) {
+                return response()->json(['error' => $e->getMessage()], 422);
+            }
+
+            $exercise->update($validatedData);
+
+            return response()->json(['message' => 'Exercise updated successfully!', 'data' => $exercise], 200);
+        }
     }
 
     /**
@@ -76,6 +92,8 @@ class ExerciseController extends Controller
      */
     public function destroy(Exercise $exercise)
     {
-        //
+        $exercise->delete();
+
+        return response()->json(['message' => 'Exercise deleted successfully', 'data' => $exercise], 201);
     }
 }
