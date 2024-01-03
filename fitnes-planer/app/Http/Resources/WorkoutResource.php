@@ -23,9 +23,6 @@ class WorkoutResource extends JsonResource
             'title' => $this->resource->title,
             'notes' => $this->resource->notes,
             'rating' => $this->resource->rating,
-            'exercise' => ExerciseResource::collection(
-                $this->resource->exercises()->whereHas('workouts')->get()
-            ),
         ];
     }
 }

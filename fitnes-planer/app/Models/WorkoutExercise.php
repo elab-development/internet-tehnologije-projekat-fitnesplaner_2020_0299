@@ -18,4 +18,12 @@ class WorkoutExercise extends Model
         'reps',
     ];
     public $incrementing = false;
+
+    public function workout() {
+        return $this->belongsTo(Workout::class, 'workout_id');
+    }
+
+    public function exercise() {
+        return $this->belongsTo(Exercise::class, 'exercise_id');
+    }
 }
