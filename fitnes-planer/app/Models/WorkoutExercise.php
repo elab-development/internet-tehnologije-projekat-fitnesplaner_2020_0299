@@ -9,7 +9,8 @@ class WorkoutExercise extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = ['workout_id', 'exercise_id'];
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'workout_id',
         'exercise_id',
@@ -17,7 +18,6 @@ class WorkoutExercise extends Model
         'sets',
         'reps',
     ];
-    public $incrementing = false;
 
     public function workout() {
         return $this->belongsTo(Workout::class, 'workout_id');

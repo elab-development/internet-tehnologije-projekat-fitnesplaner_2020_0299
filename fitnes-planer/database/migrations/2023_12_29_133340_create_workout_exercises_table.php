@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('workout_exercises', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('workout_id');
             $table->unsignedBigInteger('exercise_id');
             $table->integer('weight');
             $table->integer('sets');
             $table->integer('reps');
             $table->timestamps();
-            $table->primary(['workout_id', 'exercise_id']);
             $table->foreign('workout_id')->references('workout_id')->on('workouts')->onDelete('cascade');
             $table->foreign('exercise_id')->references('exercise_id')->on('exercises')->onDelete('cascade');
         });

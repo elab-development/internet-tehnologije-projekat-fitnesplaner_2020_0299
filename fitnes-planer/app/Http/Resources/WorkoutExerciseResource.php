@@ -19,8 +19,9 @@ class WorkoutExerciseResource extends JsonResource
         $exercise = $this->resource->exercise;
 
         return [
-            'workout_id' => $this->resource->workout_id,
+            'id' => $this->resource->id,
             'exercise' => [
+                'exercise_id' => $exercise->exercise_id,
                 'name' => $exercise->name,
                 'description' => $exercise->description,
             ],
