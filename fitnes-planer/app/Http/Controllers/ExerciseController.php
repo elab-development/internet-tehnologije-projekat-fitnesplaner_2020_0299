@@ -83,7 +83,7 @@ class ExerciseController extends Controller
 
             $exercise->update($validatedData);
 
-            return response()->json(['message' => 'Exercise updated successfully!', 'data' => $exercise], 200);
+            return response()->json(['message' => 'Exercise updated successfully!', 'data' => $exercise], 204);
         }
     }
 
@@ -94,6 +94,6 @@ class ExerciseController extends Controller
     {
         $exercise->delete();
 
-        return response()->json(['message' => 'Exercise deleted successfully', 'data' => $exercise], 201);
+        return response()->json(['message' => 'Exercise deleted successfully', 'data' => $exercise], 204);
     }
 }

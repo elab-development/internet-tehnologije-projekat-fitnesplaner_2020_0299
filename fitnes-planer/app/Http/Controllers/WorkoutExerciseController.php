@@ -99,7 +99,7 @@ class WorkoutExerciseController extends Controller
 
             $workout_exercise->update($validatedData);
 
-            return response()->json(['message' => 'Workout exercise updated successfully!', 'data' => $workout_exercise], 200);
+            return response()->json(['message' => 'Workout exercise updated successfully!', 'data' => $workout_exercise], 204);
         }
     }
 
@@ -115,6 +115,6 @@ class WorkoutExerciseController extends Controller
         }
 
         $workout_exercise->delete();
-        return response()->json(['message' => 'Workout exercise deleted successfully', 'data' => $workout_exercise], 201);
+        return response()->json(['message' => 'Workout exercise deleted successfully', 'data' => $workout_exercise], 204);
     }
 }

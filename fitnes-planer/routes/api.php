@@ -6,6 +6,7 @@ use App\Http\Controllers\WorkoutController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\WorkoutExerciseController;
 use App\Http\Controllers\ExternalApiController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function(Request $request) {
+        return auth()->user();
+    });
+    Route::resource('workouts', WorkoutController::class)->only(['update', 'store', 'destroy']);
+    Route::resource('exercises', ExerciseController::class)->only(['update', 'store', 'destroy']);
+    Route::resource('workouts.exercises', WorkoutExerciseController::class)->only(['update', 'store', 'destroy']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
 Route::get('/getWorkoutSuggestion', [ExternalApiController::class, 'getWorkoutSuggestion']);
-Route::resource('workouts', WorkoutController::class);
-Route::resource('exercises', ExerciseController::class);
-Route::resource('workouts.exercises', WorkoutExerciseController::class);
+Route::resource('workouts', WorkoutController::class)->only(['index', 'show']);
+Route::resource('exercises', ExerciseController::class)->only(['index', 'show']);
+Route::resource('workouts.exercises', WorkoutExerciseController::class)->only(['index', 'show']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
