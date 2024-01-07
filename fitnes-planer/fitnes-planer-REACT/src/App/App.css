@@ -12,14 +12,14 @@
 
 /* Color Palette */
 :root {
-  --teget: #336699;
-  --tamno-sivo: #333;
-  --svetlo-plavo: rgb(138, 187, 206);
-  --providno-plavo: rgba(176, 224, 230, 0.7); 
-  --krem: #fffdf5;
-  --zeleno: #336666; 
-  --tirkizna: #66cccc; 
-
+  --teget: #00131c;
+  --tamno-sivo: #2c3947;
+  --svetlo-plavo: #70a4d2;
+  --providno-plavo: #70a4d2; 
+  --krem: #fffef8;
+  --zeleno: #D4AF37; 
+  --tirkizna: #f1d7a2; 
+  --belo: #fffef8;
 }
 
 /* Now use these color variables throughout your CSS */
@@ -27,10 +27,10 @@
 
 body {
   font-family: 'Sofia Sans', sans-serif;
+  font-weight: 900; /* Black */
   margin: 0;
   padding: 0;
-  color: var(--tamno-sivo);
-  background-color: var(--teget); /* Primary site color (blue) */
+  color: var(--belo);
 }
 
 /* Global Box Sizing */
@@ -88,9 +88,12 @@ body {
 }
 
 .textLogo {
-  font-family: 'Sofia sans', sans-serif;
-  font-weight: 700; /* Font weight as imported */
-  font-size: 40px;
+
+    font-family: 'Sofia sans', sans-serif;
+    font-weight: 900; /* Black */
+    font-style: italic;
+
+  font-size: 50px;
   font-size-adjust: 0.3;
   color: var(--krem);
   margin-top: 20px;
@@ -169,7 +172,7 @@ body {
   }
 }
 
-.navbar a, .dropbtn {
+.navbar a {
   text-decoration: none;
   color: var(--tamno-sivo);
   font-weight: bold;
@@ -220,53 +223,13 @@ body {
 
 
 
-.dropbtn {
-  width: 100%; /* Full width of parent */
-  height: 100%; /* Full height of parent */
-  text-decoration: none;
-  color: var(--krem);
-  font-weight: bold;
-  background-color: transparent;
-  transition: background-color 0.3s, border-color 0.3s;
-}
 
-.dropbtn:hover {
-  background-color: transparent;
-  border-color: transparent;
-}
 
-/* Dropdown Content Styling */
-.dropdown-content {
-  visibility: hidden; /* Initially hidden */
-  opacity: 0; /* Fully transparent initially */
-  transform: translateY(-5%); /* Positioned slightly above */
-  transition: visibility 0s, opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
-  display: block;
-  position: absolute;
-  background-color: var(--providno-plavo); /* Semi-transparent background */
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 999; /* Stacked below navbar */
-  top: 50px; /* Positioned below navbar */
-  width: 100%; /* Optional: Match width with parent button */
-}
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover {
   visibility: visible; /* Visible on hover */
   opacity: 1; /* Fully visible on hover */
   transform: translateY(0); /* Positioned normally */
-}
-
-.dropdown-content a {
-  padding: 12px 16px; /* Tab dimensions */
-  text-decoration: none;
-  display: block;
-  color: var(--krem);
-}
-
-.dropdown-content a:hover {
-  background-color: var(--providno-plavo); /* Light grey on hover */
-  color: var(--zeleno);
 }
 
 
@@ -331,7 +294,7 @@ body {
         z-index: 1020;
     }
 
-    .dropdown, .dropbtn {
+    .dropdown {
         display: none; /* Hide regular dropdowns and buttons */
     }
 

@@ -17,50 +17,16 @@ import Home from "../Home/Home.jsx";
 function App() {
 
 
+
+
     // Promenljiva i f-ja za Menu dugme na telefonu
     const [menuOpen, setMenuOpen] = useState(false);  // da li je kliknuto menu dugme
     const toggleMenu = () => {
         setMenuOpen(!menuOpen); // Toggle the state
         console.log('Menu toggled. New state:', !menuOpen);
     };
-    // Mobilni podmeni 1
-    const [subMenu1Open, setSubMenu1Open] = useState(false);  // da li je kliknuto 1 dugme
-    const [subMenu2Open, setSubMenu2Open] = useState(false);
-    const [subMenu3Open, setSubMenu3Open] = useState(false);
-    const [subMenu4Open, setSubMenu4Open] = useState(false);
-    const toggleSubMenu1 = () => {
-        resetSubMenu();
-        setSubMenu1Open(!subMenu1Open); // Toggle the state
-        console.log('Submenu 1 toggled. New state:', !subMenu1Open); 
-    };
-    const toggleSubMenu2 = () => {
-        resetSubMenu();
-        setSubMenu2Open(!subMenu2Open); 
-        console.log('Submenu 2 toggled. New state:', !subMenu2Open); 
-    };
-    const toggleSubMenu3 = () => {
-        resetSubMenu();
-        setSubMenu3Open(!subMenu3Open); 
-        console.log('Submenu 3 toggled. New state:', !subMenu3Open); 
-    };
-    const toggleSubMenu4 = () => {
-        resetSubMenu();
-        setSubMenu4Open(!subMenu4Open); 
-        console.log('Submenu 4 toggled. New state:', !subMenu4Open); 
-    };
+   
 
-    const resetSubMenu = () => {
-        setSubMenu1Open(false);
-        setSubMenu2Open(false);
-        setSubMenu3Open(false);
-        setSubMenu4Open(false);
-        console.log('Svi sub-meniji su skupljeni!'); 
-    }
-
-    // ZA NESTAJACE FIT-PLAN DUGME U MOBILNOM NAVBARU
-    const handleButtonClick = () => {
-        window.location.href = '/';
-    };
 
     const [isHovered, setIsHovered] = useState(false);
     const handleMouseEnter = () => {
@@ -70,7 +36,10 @@ function App() {
         setIsHovered(false);
     };
 
-  
+      // ZA NESTAJACE FIT-PLAN DUGME U MOBILNOM NAVBARU
+    const handleButtonClick = () => {
+        window.location.href = '/';
+    };
 
 
 
@@ -118,9 +87,9 @@ function App() {
                       </Link>
                       
                       </div>
-                <div className="login-button-wrap">
-                <Link to="/" className="login-button" >Kontakt</Link>
-                </div>
+                    <div className="login-button-wrap">
+                    <Link to="/" className="login-button" >Kontakt</Link>
+                    </div>
                 </header>
 
                 <nav className="navbar">
@@ -153,25 +122,15 @@ function App() {
 
                     {/*REGULAR NAVBAR*/}
                     <div className="dropdown one">
-                        <button className="dropbtn">GRUPE</button>
-                        <div className="dropdown-content">
-                            <Link to="/">Ep o Gilgamešu✅</Link>
-
-                        </div>
+                        <Link to="/">Grupe</Link>
                     </div>
-                    <div className="dropdown two">
-                        <button className="dropbtn">VEZBE</button>
-                        <div className="dropdown-content">
-                            <Link to="/">Ep o Gilgamešu✅</Link>
 
-                        </div>
+                    <div className="dropdown two ">
+                        <Link to="/">Vezbe</Link>
+                        
                     </div>
                     <div className="dropdown three">
-                        <button className="dropbtn">TRENINZI</button>
-                        <div className="dropdown-content">
-                            <Link to="/">Ep o Gilgamešu✅</Link>
-
-                        </div>
+                         <Link to="/">Treninzi</Link>
                     </div>
                     
                 </nav>
