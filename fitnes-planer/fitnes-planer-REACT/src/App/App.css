@@ -1,0 +1,596 @@
+/* Import Google Font 'Josefin Sans' */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
+/* Import Google Font 'Shadows Into Light' */
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+/* Root and Body Styling */
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  background-color: #336699; /* Primary site color (blue) */
+}
+
+/* Global Box Sizing */
+* {
+  box-sizing: border-box;
+}
+
+/* App Container Styling */
+.app {
+  background-color: #336699; /* Background color behind doodle */
+}
+
+
+/* Header, Navbar, and Footer on same zIndex*/
+.header, .navbar, .footer {
+    z-index: 1020; /* Higher than the side panel */
+}
+
+
+/* Header Section */
+.header {
+  position: relative;
+  background-color: #336699; /* Blue header background */
+  height: 100px;
+  display: flex;
+  justify-content: space-between; /* Space distribution between elements */
+  align-items: center; /* Vertical center alignment */
+}
+
+.header .logo-container {
+  display: flex;
+  align-items: center; /* Vertical center alignment */
+  height: 100%; /* Full height of header */
+  margin: 30px;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+
+.logo-container:hover{
+  opacity: 0.8;
+}
+
+.hidden {
+  display: none;
+}
+
+.header .login-button {
+  margin-right: 20px; /* Right margin for spacing */
+}
+
+.header .logo {
+  height: 70%; /* Logo height */
+  margin-top: 0px;
+  align-self: center; /* Vertical centering within container */
+}
+
+.textLogo {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700; /* Font weight as imported */
+  font-size: 40px;
+  font-size-adjust: 0.3;
+  color: #fffdf5;
+  margin-top: 20px;
+  margin-left: 15px;
+  z-index: 10;
+}
+
+.header img {
+  height: 100%; /* Full height of the container */
+}
+
+
+.login-button {
+  color: #fffdf5;
+  background-color: #336699;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.5s ease; /* Transition for hover effect */
+  border-radius: 5px; /* Rounded corners */
+  font-weight: bold;
+  text-transform: uppercase;
+  min-width: 60px; /* Minimum width */
+  max-width: 120px; /* Maximum width */
+  min-height: 30px; /* Minimum height */
+  max-height: 60px; /* Maximum height */
+  position: relative; /* Required for pseudo-element positioning */
+  overflow: hidden; /* Ensures the pseudo-element is within the button boundaries */
+}
+
+.login-button::before {
+  content: '';
+  position: absolute;
+  top: -2px; right: -2px; bottom: -2px; left: -2px;
+  background: linear-gradient(45deg, #66cccc, #336699, #66cccc);
+  background-size: 2000% 200%;
+  border-radius: 5px; /* Match the button's border-radius */
+  z-index: -1;
+  animation: gradientBorder 3s linear infinite;
+}
+
+.login-button::after {
+/*  content: '';
+  position: absolute;
+  top: 30%; 
+  left: -100%; 
+  width: 35px;
+  height: 35px;
+  margin-top: -10px; 
+  background-image: url('../images/fastforward.png');
+  background-size: cover;
+  transition: left 2s ease; */
+}
+
+.login-button:hover::after {
+/*  left: 100%; /* End position outside the button */
+}
+
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+.login-button:hover {
+  padding: 15px 25px;
+  background-color: rgb(138, 187, 206);;
+  color: #336666;
+  border-radius: 5px; /* Rectangle shape on hover */
+}
+
+
+/* Navbar Styling */
+.navbar {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700; /* Font weight as imported */
+  background-color: rgba(176, 224, 230, 0.7); /* Semi-transparent blue */
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+@media (max-width: 720px) {
+  .navbar{
+    background-color: rgb(138, 187, 206);
+  }
+}
+
+.navbar a, .dropbtn {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* animacija za navbar */
+@keyframes slideDownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px); /* Start above the viewport */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* Slide to final position */
+  }
+}
+
+/* Dropdown Menu Styling */
+.dropdown {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  opacity: 0; /* Initially hidden */
+  animation: slideDownFadeIn 0.5s ease-out forwards;
+}
+
+.dropdown.one {
+  animation-delay: 0s;
+}
+
+.dropdown.two {
+  animation-delay: 0.2s;
+}
+
+.dropdown.three {
+  animation-delay: 0.4s;
+}
+
+.dropdown.four {
+  animation-delay: 0.6s;
+}
+
+
+
+.dropbtn {
+  width: 100%; /* Full width of parent */
+  height: 100%; /* Full height of parent */
+  text-decoration: none;
+  color: #fffdf5;
+  font-weight: bold;
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dropbtn:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+/* Dropdown Content Styling */
+.dropdown-content {
+  visibility: hidden; /* Initially hidden */
+  opacity: 0; /* Fully transparent initially */
+  transform: translateY(-5%); /* Positioned slightly above */
+  transition: visibility 0s, opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+  display: block;
+  position: absolute;
+  background-color: rgba(176, 224, 230, 0.7); /* Semi-transparent background */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 999; /* Stacked below navbar */
+  top: 50px; /* Positioned below navbar */
+  width: 100%; /* Optional: Match width with parent button */
+}
+
+.dropdown:hover .dropdown-content {
+  visibility: visible; /* Visible on hover */
+  opacity: 1; /* Fully visible on hover */
+  transform: translateY(0); /* Positioned normally */
+}
+
+.dropdown-content a {
+  padding: 12px 16px; /* Tab dimensions */
+  text-decoration: none;
+  display: block;
+  color: #fffdf5;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(176, 224, 230, 0.7); /* Light grey on hover */
+  color: #336666;
+}
+
+
+
+
+.portal{
+   z-index: 1000;
+}
+
+/* Footer Styling */
+.footer {
+  background-color: rgba(176, 224, 230, 0.7);
+  color: #fffdf5;
+  text-align: center;
+  padding: 10px 0;
+  height: 30px;
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center children vertically */
+  align-items: center; /* Center children horizontally */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*NE PRIKAZUJE MENU DIGME NA DESKTOPU*/
+@media (min-width: 720px) {
+  .menu-icon {
+    display: none;
+  }
+  .side-panel {
+      display: none;
+  }
+  .side-panel-1, .side-panel-2, .side-panel-3, .side-panel-4 {
+    display: none;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* PRAVILA ZA PRIKAZ NA TELEFONU */
+@media (max-width: 720px) {
+
+
+    .header{
+      z-index: 1030;
+    }
+    .navbar {
+        justify-content: center; /* Center the menu button */
+        z-index: 1020;
+    }
+
+    .dropdown, .dropbtn {
+        display: none; /* Hide regular dropdowns and buttons */
+    }
+
+
+    .menu-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* Full width */
+        height: 50px; /* Same as navbar height */
+        cursor: pointer;
+        color: #fffdf5;
+        transition: transform 0.5s ease;
+    }
+
+        /* Class for when the menu is open */
+    .menu-icon-open {
+        transform: translateX(0); /* Move to the left edge */
+    }
+
+    /* Class for when the menu is closed */
+    .menu-icon-closed {
+        transform: translateX(calc(-50% + 90px)); /* Stay in center, adjust 25px if icon size is different */
+    }
+
+    .navbar-logo {
+        /* Existing styles */
+        transition: opacity 0.5s ease-in-out;
+        opacity: 0; /* Lower opacity for disabled appearance */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 120px;
+        background-color: transparent;
+        color: #fffdf5;
+        font-weight: 700;
+        font-size: 8px;
+        padding-top: 10px;
+        margin-left: 10px;
+        font-size-adjust: 0.3;
+        border: none;
+        pointer-events: none; /* Disables click events */
+        cursor: default; /* Default cursor for disabled state */
+    }
+
+    .navbar-logo-button h1 {
+        margin: 0;
+    }
+
+    .navbar-logo.visible {
+        pointer-events: auto; /* Enables click events */
+        opacity: 1; /* Fully visible */
+        cursor: pointer; /* Pointer cursor for clickable state */
+    }
+
+
+
+        /* Side Panel Styling */
+    .side-panel {
+        position: fixed; /* Fixed position */
+        top: 50px; /* Below the navbar */
+        left: 0; /* Start from the left edge */
+        width: 15%; /* 20% of the screen width */
+        height: 100%; /* Full height of the screen */
+        /* background-color: rgba(176, 224, 230, 0.7);*/
+        background-color: rgb(138, 187, 206);
+        transform: translateX(-100%); /* Start off-screen to the left */
+        transition: transform 0.5s ease; /* Smooth transition for sliding */
+        z-index: 1010;
+
+        display: flex; /* Use flexbox layout */
+        flex-direction: column; /* Stack children vertically */
+        justify-content: center; /* Center children vertically */
+        align-items: center; /* Center children horizontally */
+    }
+
+    /* Open state for the panel */
+    .side-panel.open {
+        transform: translateX(0); /* Slide in to be fully visible */
+    }
+
+    /* Closed state for the panel */
+    .side-panel.closed {
+        transform: translateX(-100%); /* Slide out to the left off-screen */
+    }
+
+    /* Button Styling inside Side Panel */
+    .side-panel .panel-btn-1, .side-panel .panel-btn-2, .side-panel .panel-btn-3, .side-panel .panel-btn-4 {
+        width: 100%; /* Full width of the panel */
+        height: 20%; /* 20% of the panel's height */
+        background-color: transparent; /* Background color for the buttons */
+        color: #fffdf5; /* Text color */
+        border: none; /* No border */
+        outline: none; /* Remove outline */
+        cursor: pointer; /* Cursor pointer */
+        border-radius: 0;
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    /* Hover boja dugmeta */
+    .side-panel .panel-btn-1:hover, .side-panel .panel-btn-2:hover, .side-panel .panel-btn-3:hover, .side-panel .panel-btn-4:hover {
+        background-color: rgba(176, 224, 230, 0.7); /* Light grey background on hover */
+    }
+
+    /* Boja dugmeta kad je otvoren drugi panel sa listom */
+    .panel-btn-1.open,
+    .panel-btn-2.open,
+    .panel-btn-3.open,
+    .panel-btn-4.open {
+        background-color: rgba(176, 224, 230, 0.7);
+    }
+
+
+
+/*  SADA IDU SPOREDNI SIDEPANELI  */
+
+    .side-panel-1, .side-panel-2, .side-panel-3, .side-panel-4 {
+        position: fixed; /* Fixed position */
+        top: 19%; /* Below the navbar */
+        left: 15%; /* Start from the left edge */
+        width: 85%; /* 20% of the screen width */
+        height: 20%; /* Full height of the screen */
+        background-color: rgba(176, 224, 230, 0.7);
+        transform: translateX(-100%); /* Start off-screen to the left */
+        transition: transform 0.5s ease; /* Smooth transition for sliding */
+        z-index: 1009;
+
+        display: flex; /* Use flexbox layout */
+        flex-direction: column; /* Stack children vertically */
+        justify-content: left; /* Center children vertically */
+        align-items: left; /* Center children horizontally */
+        border-bottom-left-radius: 15px; /* Curved bottom left corner */
+        padding-left: 20px
+    }
+
+    .side-panel-2 {
+      top: 39%;
+    }
+
+    .side-panel-3 {
+      top: 59%;
+    }
+
+    .side-panel-4 {
+      top: 79%;
+    }
+
+    /*  Senka u levom delu drugog panela sa lektirama   */
+    .side-panel-1::after , .side-panel-2::after , .side-panel-3::after , .side-panel-4::after{
+      content: '';
+      position: absolute; /* Absolute position relative to the parent */
+      left: -10%; /* Position to the left of the panel */
+      top: 0;
+      width: 10%; /* Width of the shadow */
+      height: 100%; /* Full height of the panel */
+      background: rgba(0, 0, 0, 0.5); /* Shadow color and opacity */
+      /* You can adjust the shadow style as needed */
+      box-shadow: 10px 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /*  Gornje levo coshe od drugog panela sa lektirama   */
+    .side-panel-1::before, .side-panel-2::before, .side-panel-3::before, .side-panel-4::before {
+        content: ''; /* Required for pseudo-elements */
+        position: absolute; /* Position relative to the parent */
+        top: -13%; /* Position above the top of the panel */
+        left: 0px; /* Position outside the left of the panel */
+        width: 20px;
+        height: 13%;
+        background: radial-gradient(180% 180% at right -65% top -65%, transparent 99%, rgba(176, 224, 230, 0.7) )
+    }
+
+
+    /* Open state for the panel */
+    .side-panel-1.open , .side-panel-2.open , .side-panel-3.open , .side-panel-4.open {
+        transform: translateX(0%); /* Slide in to be fully visible */
+    }
+
+    /* Closed state for the panel */
+    .side-panel-1.closed , .side-panel-2.closed , .side-panel-3.closed , .side-panel-4.closed {
+        transform: translateX(-120%); /* Slide out to the left off-screen */
+    }
+
+    /* Button Styling inside Side Panel */
+    .side-panel-1 .panel-link, .side-panel-2 .panel-link, .side-panel-3 .panel-link, .side-panel-4 .panel-link {
+        padding-left: 10px;
+        width: 100%; /* Full width of the panel */
+        height: 20%; /* 20% of the panel's height */
+        background-color: transparent; /* Background color for the buttons */
+        color: #fffdf5; /* Text color */
+        border: none; /* No border */
+        outline: none; /* Remove outline */
+        cursor: pointer; /* Cursor pointer */
+        transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    /* Hover effect for buttons */
+    .side-panel-1 .panel-link:hover, .side-panel-2 .panel-link:hover, .side-panel-3 .panel-link:hover, .side-panel-4 .panel-link:hover {
+        background-color: rgba(176, 224, 230, 0.7); /* Light grey background on hover */
+    }
+
+
+
+
+
+
+/* Login button za manji ekran   */
+    .login-button {
+      border: 2px solid rgb(138, 187, 206);
+      padding: 5px 5px;
+
+    }
+
+    .login-button:hover {
+      padding: 8px 8px;
+    }
+
+}
