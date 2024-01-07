@@ -57,7 +57,7 @@ function App() {
         console.log('Svi sub-meniji su skupljeni!'); 
     }
 
-    // ZA NESTAJACE PROCITAM DUGME U MOBILNOM NAVBARU
+    // ZA NESTAJACE FIT-PLAN DUGME U MOBILNOM NAVBARU
     const handleButtonClick = () => {
         window.location.href = '/';
     };
@@ -114,7 +114,7 @@ function App() {
                         <img src={Logo} alt="React logo"/>
                       </Link>
                       <Link to="/" className="logo">
-                        <h1 className="textLogo">FIT-PlAN</h1>
+                        <h1 className="textLogo">FIT-PLAN</h1>
                       </Link>
                       
                       </div>
@@ -143,34 +143,7 @@ function App() {
                         </button>
                     </div>
 
-                     {/* Panel that slides in and out */}
-                     <div className={`side-panel ${menuOpen ? 'open' : 'closed'}`}>
-                        <button className={`panel-btn-1 ${subMenu1Open ? 'open' : 'closed'}`} onMouseEnter={() => setSubMenu1Open(true)} onMouseLeave={() => setSubMenu1Open(false)}>1</button>
-                        <button className={`panel-btn-2 ${subMenu2Open ? 'open' : 'closed'}`} onMouseEnter={() => setSubMenu2Open(true)} onMouseLeave={() => setSubMenu2Open(false)}>2</button>
-                        <button className={`panel-btn-3 ${subMenu3Open ? 'open' : 'closed'}`} onMouseEnter={() => setSubMenu3Open(true)} onMouseLeave={() => setSubMenu3Open(false)}>3</button>
-                        <button className={`panel-btn-4 ${subMenu4Open ? 'open' : 'closed'}`} onMouseEnter={() => setSubMenu4Open(true)} onMouseLeave={() => setSubMenu4Open(false)}>4</button>
-                    </div>
 
-
-                    <div className={`side-panel-1 ${subMenu1Open ? 'open' : 'closed'}`} onMouseEnter={() => setSubMenu1Open(true)} onMouseLeave={() => setSubMenu1Open(false)}>
-                        <Link to="/" className="panel-link">Ep o Gilgamešu</Link>
-
-                    </div>
-
-                    <div className={`side-panel-2 ${subMenu2Open ? 'open' : 'closed'}`} onMouseEnter={() => setSubMenu2Open(true)} onMouseLeave={() => setSubMenu2Open(false)}>
-                        <Link to="/" className="panel-link">Bajka_o_ribaru_i_ribici</Link>
-                        
-                    </div>
-
-                    <div className={`side-panel-3 ${subMenu3Open ? 'open' : 'closed'}`} onMouseEnter={() => setSubMenu3Open(true)} onMouseLeave={() => setSubMenu3Open(false)}>
-                        <Link to="/">Tuga</Link>
-
-                    </div>
-
-                    <div className={`side-panel-4 ${subMenu4Open ? 'open' : 'closed'}`} onMouseEnter={() => setSubMenu4Open(true)} onMouseLeave={() => setSubMenu4Open(false)}>
-                        <Link to="/">Mit o Sizifu</Link>
-
-                    </div>
 
 
 

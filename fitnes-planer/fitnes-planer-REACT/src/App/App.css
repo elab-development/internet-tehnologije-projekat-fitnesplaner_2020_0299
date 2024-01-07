@@ -1,7 +1,7 @@
-/* Import Google Font 'Josefin Sans' */
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap');
-/* Import Google Font 'Shadows Into Light' */
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+/* Import Google Font 'Sofia Sans' */
+@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+
+
 
 /* Root and Body Styling */
 #root {
@@ -10,12 +10,27 @@
   margin: 0 auto;
 }
 
+/* Color Palette */
+:root {
+  --teget: #336699;
+  --tamno-sivo: #333;
+  --svetlo-plavo: rgb(138, 187, 206);
+  --providno-plavo: rgba(176, 224, 230, 0.7); 
+  --krem: #fffdf5;
+  --zeleno: #336666; 
+  --tirkizna: #66cccc; 
+
+}
+
+/* Now use these color variables throughout your CSS */
+
+
 body {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Sofia Sans', sans-serif;
   margin: 0;
   padding: 0;
-  color: #333;
-  background-color: #336699; /* Primary site color (blue) */
+  color: var(--tamno-sivo);
+  background-color: var(--teget); /* Primary site color (blue) */
 }
 
 /* Global Box Sizing */
@@ -25,7 +40,7 @@ body {
 
 /* App Container Styling */
 .app {
-  background-color: #336699; /* Background color behind doodle */
+  background-color: var(--teget); /* Background color behind doodle */
 }
 
 
@@ -38,7 +53,7 @@ body {
 /* Header Section */
 .header {
   position: relative;
-  background-color: #336699; /* Blue header background */
+  background-color: var(--teget); /* Blue header background */
   height: 100px;
   display: flex;
   justify-content: space-between; /* Space distribution between elements */
@@ -73,11 +88,11 @@ body {
 }
 
 .textLogo {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Sofia sans', sans-serif;
   font-weight: 700; /* Font weight as imported */
   font-size: 40px;
   font-size-adjust: 0.3;
-  color: #fffdf5;
+  color: var(--krem);
   margin-top: 20px;
   margin-left: 15px;
   z-index: 10;
@@ -89,8 +104,8 @@ body {
 
 
 .login-button {
-  color: #fffdf5;
-  background-color: #336699;
+  color: var(--krem);
+  background-color: var(--teget);
   padding: 10px 20px;
   cursor: pointer;
   transition: all 0.5s ease; /* Transition for hover effect */
@@ -116,22 +131,6 @@ body {
   animation: gradientBorder 3s linear infinite;
 }
 
-.login-button::after {
-/*  content: '';
-  position: absolute;
-  top: 30%; 
-  left: -100%; 
-  width: 35px;
-  height: 35px;
-  margin-top: -10px; 
-  background-image: url('../images/fastforward.png');
-  background-size: cover;
-  transition: left 2s ease; */
-}
-
-.login-button:hover::after {
-/*  left: 100%; /* End position outside the button */
-}
 
 @keyframes gradientBorder {
   0% {
@@ -145,17 +144,17 @@ body {
 
 .login-button:hover {
   padding: 15px 25px;
-  background-color: rgb(138, 187, 206);;
-  color: #336666;
+  background-color: var(--svetlo-plavo);
+  color: var(--zeleno);
   border-radius: 5px; /* Rectangle shape on hover */
 }
 
 
 /* Navbar Styling */
 .navbar {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Sofia Sans', sans-serif;
   font-weight: 700; /* Font weight as imported */
-  background-color: rgba(176, 224, 230, 0.7); /* Semi-transparent blue */
+  background-color: var(--providno-plavo); /* Semi-transparent blue */
   height: 50px;
   display: flex;
   justify-content: space-around;
@@ -166,13 +165,13 @@ body {
 }
 @media (max-width: 720px) {
   .navbar{
-    background-color: rgb(138, 187, 206);
+    background-color: var(--svetlo-plavo);
   }
 }
 
 .navbar a, .dropbtn {
   text-decoration: none;
-  color: #333;
+  color: var(--tamno-sivo);
   font-weight: bold;
   border: none;
   border-radius: 0px;
@@ -225,7 +224,7 @@ body {
   width: 100%; /* Full width of parent */
   height: 100%; /* Full height of parent */
   text-decoration: none;
-  color: #fffdf5;
+  color: var(--krem);
   font-weight: bold;
   background-color: transparent;
   transition: background-color 0.3s, border-color 0.3s;
@@ -244,7 +243,7 @@ body {
   transition: visibility 0s, opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
   display: block;
   position: absolute;
-  background-color: rgba(176, 224, 230, 0.7); /* Semi-transparent background */
+  background-color: var(--providno-plavo); /* Semi-transparent background */
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 999; /* Stacked below navbar */
@@ -262,12 +261,12 @@ body {
   padding: 12px 16px; /* Tab dimensions */
   text-decoration: none;
   display: block;
-  color: #fffdf5;
+  color: var(--krem);
 }
 
 .dropdown-content a:hover {
-  background-color: rgba(176, 224, 230, 0.7); /* Light grey on hover */
-  color: #336666;
+  background-color: var(--providno-plavo); /* Light grey on hover */
+  color: var(--zeleno);
 }
 
 
@@ -279,8 +278,8 @@ body {
 
 /* Footer Styling */
 .footer {
-  background-color: rgba(176, 224, 230, 0.7);
-  color: #fffdf5;
+  background-color: var(--providno-plavo);
+  color: var(--krem);
   text-align: center;
   padding: 10px 0;
   height: 30px;
@@ -300,57 +299,14 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*NE PRIKAZUJE MENU DIGME NA DESKTOPU*/
 @media (min-width: 720px) {
   .menu-icon {
     display: none;
   }
-  .side-panel {
-      display: none;
-  }
-  .side-panel-1, .side-panel-2, .side-panel-3, .side-panel-4 {
-    display: none;
-  }
+
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -387,7 +343,7 @@ body {
         width: 100%; /* Full width */
         height: 50px; /* Same as navbar height */
         cursor: pointer;
-        color: #fffdf5;
+        color: var(--krem);
         transition: transform 0.5s ease;
     }
 
@@ -411,7 +367,7 @@ body {
         height: 50px;
         width: 120px;
         background-color: transparent;
-        color: #fffdf5;
+        color: var(--krem);
         font-weight: 700;
         font-size: 8px;
         padding-top: 10px;
@@ -434,148 +390,8 @@ body {
 
 
 
-        /* Side Panel Styling */
-    .side-panel {
-        position: fixed; /* Fixed position */
-        top: 50px; /* Below the navbar */
-        left: 0; /* Start from the left edge */
-        width: 15%; /* 20% of the screen width */
-        height: 100%; /* Full height of the screen */
-        /* background-color: rgba(176, 224, 230, 0.7);*/
-        background-color: rgb(138, 187, 206);
-        transform: translateX(-100%); /* Start off-screen to the left */
-        transition: transform 0.5s ease; /* Smooth transition for sliding */
-        z-index: 1010;
-
-        display: flex; /* Use flexbox layout */
-        flex-direction: column; /* Stack children vertically */
-        justify-content: center; /* Center children vertically */
-        align-items: center; /* Center children horizontally */
-    }
-
-    /* Open state for the panel */
-    .side-panel.open {
-        transform: translateX(0); /* Slide in to be fully visible */
-    }
-
-    /* Closed state for the panel */
-    .side-panel.closed {
-        transform: translateX(-100%); /* Slide out to the left off-screen */
-    }
-
-    /* Button Styling inside Side Panel */
-    .side-panel .panel-btn-1, .side-panel .panel-btn-2, .side-panel .panel-btn-3, .side-panel .panel-btn-4 {
-        width: 100%; /* Full width of the panel */
-        height: 20%; /* 20% of the panel's height */
-        background-color: transparent; /* Background color for the buttons */
-        color: #fffdf5; /* Text color */
-        border: none; /* No border */
-        outline: none; /* Remove outline */
-        cursor: pointer; /* Cursor pointer */
-        border-radius: 0;
-        transition: background-color 0.3s; /* Smooth transition for hover effect */
-    }
-
-    /* Hover boja dugmeta */
-    .side-panel .panel-btn-1:hover, .side-panel .panel-btn-2:hover, .side-panel .panel-btn-3:hover, .side-panel .panel-btn-4:hover {
-        background-color: rgba(176, 224, 230, 0.7); /* Light grey background on hover */
-    }
-
-    /* Boja dugmeta kad je otvoren drugi panel sa listom */
-    .panel-btn-1.open,
-    .panel-btn-2.open,
-    .panel-btn-3.open,
-    .panel-btn-4.open {
-        background-color: rgba(176, 224, 230, 0.7);
-    }
 
 
-
-/*  SADA IDU SPOREDNI SIDEPANELI  */
-
-    .side-panel-1, .side-panel-2, .side-panel-3, .side-panel-4 {
-        position: fixed; /* Fixed position */
-        top: 19%; /* Below the navbar */
-        left: 15%; /* Start from the left edge */
-        width: 85%; /* 20% of the screen width */
-        height: 20%; /* Full height of the screen */
-        background-color: rgba(176, 224, 230, 0.7);
-        transform: translateX(-100%); /* Start off-screen to the left */
-        transition: transform 0.5s ease; /* Smooth transition for sliding */
-        z-index: 1009;
-
-        display: flex; /* Use flexbox layout */
-        flex-direction: column; /* Stack children vertically */
-        justify-content: left; /* Center children vertically */
-        align-items: left; /* Center children horizontally */
-        border-bottom-left-radius: 15px; /* Curved bottom left corner */
-        padding-left: 20px
-    }
-
-    .side-panel-2 {
-      top: 39%;
-    }
-
-    .side-panel-3 {
-      top: 59%;
-    }
-
-    .side-panel-4 {
-      top: 79%;
-    }
-
-    /*  Senka u levom delu drugog panela sa lektirama   */
-    .side-panel-1::after , .side-panel-2::after , .side-panel-3::after , .side-panel-4::after{
-      content: '';
-      position: absolute; /* Absolute position relative to the parent */
-      left: -10%; /* Position to the left of the panel */
-      top: 0;
-      width: 10%; /* Width of the shadow */
-      height: 100%; /* Full height of the panel */
-      background: rgba(0, 0, 0, 0.5); /* Shadow color and opacity */
-      /* You can adjust the shadow style as needed */
-      box-shadow: 10px 0 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /*  Gornje levo coshe od drugog panela sa lektirama   */
-    .side-panel-1::before, .side-panel-2::before, .side-panel-3::before, .side-panel-4::before {
-        content: ''; /* Required for pseudo-elements */
-        position: absolute; /* Position relative to the parent */
-        top: -13%; /* Position above the top of the panel */
-        left: 0px; /* Position outside the left of the panel */
-        width: 20px;
-        height: 13%;
-        background: radial-gradient(180% 180% at right -65% top -65%, transparent 99%, rgba(176, 224, 230, 0.7) )
-    }
-
-
-    /* Open state for the panel */
-    .side-panel-1.open , .side-panel-2.open , .side-panel-3.open , .side-panel-4.open {
-        transform: translateX(0%); /* Slide in to be fully visible */
-    }
-
-    /* Closed state for the panel */
-    .side-panel-1.closed , .side-panel-2.closed , .side-panel-3.closed , .side-panel-4.closed {
-        transform: translateX(-120%); /* Slide out to the left off-screen */
-    }
-
-    /* Button Styling inside Side Panel */
-    .side-panel-1 .panel-link, .side-panel-2 .panel-link, .side-panel-3 .panel-link, .side-panel-4 .panel-link {
-        padding-left: 10px;
-        width: 100%; /* Full width of the panel */
-        height: 20%; /* 20% of the panel's height */
-        background-color: transparent; /* Background color for the buttons */
-        color: #fffdf5; /* Text color */
-        border: none; /* No border */
-        outline: none; /* Remove outline */
-        cursor: pointer; /* Cursor pointer */
-        transition: background-color 0.3s; /* Smooth transition for hover effect */
-    }
-
-    /* Hover effect for buttons */
-    .side-panel-1 .panel-link:hover, .side-panel-2 .panel-link:hover, .side-panel-3 .panel-link:hover, .side-panel-4 .panel-link:hover {
-        background-color: rgba(176, 224, 230, 0.7); /* Light grey background on hover */
-    }
 
 
 
@@ -584,7 +400,7 @@ body {
 
 /* Login button za manji ekran   */
     .login-button {
-      border: 2px solid rgb(138, 187, 206);
+      border: 2px solid var(--svetlo-plavo);
       padding: 5px 5px;
 
     }
