@@ -1,5 +1,103 @@
-.home {
-	height: 100vh;
-	background-color: white;
-	color: black;
+/* Home.css */
+
+:root {
+    --dark-blue: #00131c;
+    --blue: #1a2b33;
+    --light-blue: #70a4d2;
+    --dark-cream: #D4AF37;
+    --light-cream: #f1d7a2;
+    --dark-gray: #2c3947;
+    --white: #fffef8;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at center bottom, var(--blue), var(--dark-blue)); /* Updated to darker blue */
+    color: var(--white);
+    background-attachment: fixed; /* Added to make background fixed */
+    height: 200vh; /* Set the height to 200vh */
+}
+
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.header {
+    padding: 20px;
+    background-color: var(--dark-cream);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.company-name {
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+    margin: 0;
+}
+
+.slogan {
+    font-size: 1.2rem;
+    color: var(--dark-gray);
+    margin: 0;
+}
+
+.services {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.service-card {
+    width: 30%;
+    padding: 20px;
+    background-color: var(--light-cream);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: scale(1.05);
+}
+
+.service-icon img {
+    max-width: 100px;
+    margin-bottom: 10px;
+}
+
+.service-title {
+    font-size: 1.5rem;
+    color: var(--dark-blue);
+}
+
+.service-description {
+    font-size: 1rem;
+    color: var(--dark-gray);
+}
+
+.footer {
+    background-color: var(--dark-cream);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.contact-info a {
+    text-decoration: none;
+    color: var(--dark-gray);
+}
+
+.contact-info a:hover {
+    color: var(--dark-blue);
+}
+
+.address {
+    font-size: 0.8rem;
+    color: var(--dark-gray);
 }

@@ -1,375 +1,127 @@
-/* Import Google Font 'Sofia Sans' */
-@import url('https://fonts.googleapis.com/css2?family=Sofia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-
-
-/* Root and Body Styling */
-#root {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-}
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 /* Color Palette */
 :root {
-  --teget: #00131c;
-  --tamno-sivo: #2c3947;
-  --svetlo-plavo: #70a4d2;
-  --providno-plavo: #70a4d2; 
-  --krem: #fffef8;
-  --zeleno: #D4AF37; 
-  --tirkizna: #f1d7a2; 
-  --belo: #fffef8;
+    --dark-blue: #00131c;
+    --light-blue: #70a4d2;
+    --dark-cream: #D4AF37; 
+    --light-cream: #f1d7a2; 
+    --dark-gray: #2c3947;
+    --white: #fffef8;
 }
 
-/* Now use these color variables throughout your CSS */
+/* General styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+#root {
+    width: 100%;
+    min-height: 100vh; /* If you want it to take full height as well */
+}
+
+
+html, body {
+    width: 100%; /* Ensuring full width */
+    height: 100%; /* Ensuring full height */
+    overflow-x: hidden; /* Prevents horizontal scrollbar */
+}
 
 body {
-  font-family: 'Sofia Sans', sans-serif;
-  font-weight: 900; /* Black */
-  margin: 0;
-  padding: 0;
-  color: var(--belo);
+    font-family: 'Questrial', sans-serif;
+    background-color: var(--white); /* Set a base background color */
+    color: var(--dark-gray); /* Set a base text color */
 }
 
-/* Global Box Sizing */
-* {
-  box-sizing: border-box;
-}
-
-/* App Container Styling */
 .app {
-  background-color: var(--teget); /* Background color behind doodle */
+    width: 100%; /* Ensuring app stretches to full width */
+}
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Uses 100% of the viewport width */
+    height: 80px;
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 0 20px;
 }
 
 
-/* Header, Navbar, and Footer on same zIndex*/
-.header, .navbar, .footer {
-    z-index: 1020; /* Higher than the side panel */
+
+.logo-container, .buttons, .contact {
+    display: flex;
+    align-items: center;
 }
 
-
-/* Header Section */
-.header {
-  position: relative;
-  background-color: var(--teget); /* Blue header background */
-  height: 100px;
-  display: flex;
-  justify-content: space-between; /* Space distribution between elements */
-  align-items: center; /* Vertical center alignment */
-}
-
-.header .logo-container {
-  display: flex;
-  align-items: center; /* Vertical center alignment */
-  height: 100%; /* Full height of header */
-  margin: 30px;
-  margin-left: 10px;
-  margin-top: 30px;
-}
-
-.logo-container:hover{
-  opacity: 0.8;
-}
-
-.hidden {
-  display: none;
-}
-
-.header .login-button {
-  margin-right: 20px; /* Right margin for spacing */
-}
-
-.header .logo {
-  height: 70%; /* Logo height */
-  margin-top: 0px;
-  align-self: center; /* Vertical centering within container */
+.logo img {
+    height: 70px;
+    width: 70px;
+    object-fit: contain;
+    margin-right: 10px;
 }
 
 .textLogo {
-
-    font-family: 'Sofia sans', sans-serif;
-    font-weight: 900; /* Black */
-    font-style: italic;
-
-  font-size: 50px;
-  font-size-adjust: 0.3;
-  color: var(--krem);
-  margin-top: 20px;
-  margin-left: 15px;
-  z-index: 10;
+    font-weight: bold;
+    color: var(--white);
+    font-size: 30px;
+    font-weight: 900;
 }
 
-.header img {
-  height: 100%; /* Full height of the container */
+.buttons .dropdown {
+    margin: 0 10px;
 }
 
-
-.login-button {
-  color: var(--krem);
-  background-color: var(--teget);
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all 0.5s ease; /* Transition for hover effect */
-  border-radius: 5px; /* Rounded corners */
-  font-weight: bold;
-  text-transform: uppercase;
-  min-width: 60px; /* Minimum width */
-  max-width: 120px; /* Maximum width */
-  min-height: 30px; /* Minimum height */
-  max-height: 60px; /* Maximum height */
-  position: relative; /* Required for pseudo-element positioning */
-  overflow: hidden; /* Ensures the pseudo-element is within the button boundaries */
+.dropdown a {
+    text-decoration: none;
+    color: var(--white);
+    padding: 10px;
+    display: block;
 }
 
-.login-button::before {
-  content: '';
-  position: absolute;
-  top: -2px; right: -2px; bottom: -2px; left: -2px;
-  background: linear-gradient(45deg, #66cccc, #336699, #66cccc);
-  background-size: 2000% 200%;
-  border-radius: 5px; /* Match the button's border-radius */
-  z-index: -1;
-  animation: gradientBorder 3s linear infinite;
+.contact button {
+    padding: 8px 16px;
+    background-color: var(--light-blue);
+    color: var(--white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-
-@keyframes gradientBorder {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+.contact button:hover {
+    background-color: var(--dark-blue);
 }
 
-
-.login-button:hover {
-  padding: 15px 25px;
-  background-color: var(--svetlo-plavo);
-  color: var(--zeleno);
-  border-radius: 5px; /* Rectangle shape on hover */
+/* Main content styling */
+.portal {
+    min-height: calc(100vh - 80px); /* Adjust the height minus navbar */
+    padding: 20px;
+    background-color: var(--belo);
 }
 
-
-/* Navbar Styling */
-.navbar {
-  font-family: 'Sofia Sans', sans-serif;
-  font-weight: 700; /* Font weight as imported */
-  background-color: var(--providno-plavo); /* Semi-transparent blue */
-  height: 50px;
-  display: flex;
-  justify-content: space-around;
-  align-items: stretch;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-@media (max-width: 720px) {
-  .navbar{
-    background-color: var(--svetlo-plavo);
-  }
-}
-
-.navbar a {
-  text-decoration: none;
-  color: var(--tamno-sivo);
-  font-weight: bold;
-  border: none;
-  border-radius: 0px;
-  background-color: transparent;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-/* animacija za navbar */
-@keyframes slideDownFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-50px); /* Start above the viewport */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0); /* Slide to final position */
-  }
-}
-
-/* Dropdown Menu Styling */
-.dropdown {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  opacity: 0; /* Initially hidden */
-  animation: slideDownFadeIn 0.5s ease-out forwards;
-}
-
-.dropdown.one {
-  animation-delay: 0s;
-}
-
-.dropdown.two {
-  animation-delay: 0.2s;
-}
-
-.dropdown.three {
-  animation-delay: 0.4s;
-}
-
-.dropdown.four {
-  animation-delay: 0.6s;
-}
-
-
-
-
-
-
-.dropdown:hover {
-  visibility: visible; /* Visible on hover */
-  opacity: 1; /* Fully visible on hover */
-  transform: translateY(0); /* Positioned normally */
-}
-
-
-
-
-.portal{
-   z-index: 1000;
-}
-
-/* Footer Styling */
 .footer {
-  background-color: var(--providno-plavo);
-  color: var(--krem);
-  text-align: center;
-  padding: 10px 0;
-  height: 30px;
-  display: flex; /* Use flexbox layout */
-  flex-direction: column; /* Stack children vertically */
-  justify-content: center; /* Center children vertically */
-  align-items: center; /* Center children horizontally */
+    width: 100%; /* Ensure footer takes full width */
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--dark-gray);
+    color: var(--light-cream);
 }
 
-
-
-
-
-
-
-
-
-
-
-/*NE PRIKAZUJE MENU DIGME NA DESKTOPU*/
-@media (min-width: 720px) {
-  .menu-icon {
-    display: none;
-  }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* PRAVILA ZA PRIKAZ NA TELEFONU */
-@media (max-width: 720px) {
-
-
-    .header{
-      z-index: 1030;
-    }
+/* Responsive styling */
+@media (max-width: 768px) {
     .navbar {
-        justify-content: center; /* Center the menu button */
-        z-index: 1020;
+        flex-direction: column;
+        height: auto;
     }
 
-    .dropdown {
-        display: none; /* Hide regular dropdowns and buttons */
+    .logo-container, .buttons {
+        margin-bottom: 10px;
     }
-
-
-    .menu-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%; /* Full width */
-        height: 50px; /* Same as navbar height */
-        cursor: pointer;
-        color: var(--krem);
-        transition: transform 0.5s ease;
-    }
-
-        /* Class for when the menu is open */
-    .menu-icon-open {
-        transform: translateX(0); /* Move to the left edge */
-    }
-
-    /* Class for when the menu is closed */
-    .menu-icon-closed {
-        transform: translateX(calc(-50% + 90px)); /* Stay in center, adjust 25px if icon size is different */
-    }
-
-    .navbar-logo {
-        /* Existing styles */
-        transition: opacity 0.5s ease-in-out;
-        opacity: 0; /* Lower opacity for disabled appearance */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 50px;
-        width: 120px;
-        background-color: transparent;
-        color: var(--krem);
-        font-weight: 700;
-        font-size: 8px;
-        padding-top: 10px;
-        margin-left: 10px;
-        font-size-adjust: 0.3;
-        border: none;
-        pointer-events: none; /* Disables click events */
-        cursor: default; /* Default cursor for disabled state */
-    }
-
-    .navbar-logo-button h1 {
-        margin: 0;
-    }
-
-    .navbar-logo.visible {
-        pointer-events: auto; /* Enables click events */
-        opacity: 1; /* Fully visible */
-        cursor: pointer; /* Pointer cursor for clickable state */
-    }
-
-
-
-
-
-
-
-
-
-
-
-/* Login button za manji ekran   */
-    .login-button {
-      border: 2px solid var(--svetlo-plavo);
-      padding: 5px 5px;
-
-    }
-
-    .login-button:hover {
-      padding: 8px 8px;
-    }
-
 }
