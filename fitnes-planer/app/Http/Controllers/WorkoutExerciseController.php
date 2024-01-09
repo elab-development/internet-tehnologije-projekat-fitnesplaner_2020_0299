@@ -13,9 +13,9 @@ class WorkoutExerciseController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($workoutId)
     {
-        $workoutExercises = WorkoutExercise::all();
+        $workoutExercises = WorkoutExercise::where('workout_id', $workoutId)->get();
 
         return new WorkoutExerciseCollection($workoutExercises);
     }
@@ -99,7 +99,7 @@ class WorkoutExerciseController extends Controller
 
             $workout_exercise->update($validatedData);
 
-            return response()->json(['message' => 'Workout exercise updated successfully!', 'data' => $workout_exercise], 204);
+            return response()->json(['message' => 'Workout exercise updated successfully!', 'data' => $workout_exercise], 201);
         }
     }
 
@@ -115,6 +115,6 @@ class WorkoutExerciseController extends Controller
         }
 
         $workout_exercise->delete();
-        return response()->json(['message' => 'Workout exercise deleted successfully', 'data' => $workout_exercise], 204);
+        return response()->json(['message' => 'Workout exercise deleted successfully', 'data' => $workout_exercise], 201);
     }
 }

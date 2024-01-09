@@ -23,10 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/exercises/export', [ExerciseController::class, 'export']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/profile', function(Request $request) {
-        return auth()->user();
-    });
     Route::resource('workouts', WorkoutController::class)->only(['update', 'store', 'destroy']);
     Route::resource('exercises', ExerciseController::class)->only(['update', 'store', 'destroy']);
     Route::resource('workouts.exercises', WorkoutExerciseController::class)->only(['update', 'store', 'destroy']);

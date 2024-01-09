@@ -6,6 +6,7 @@ use App\Models\Exercise;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ExerciseResource;
 use App\Http\Resources\ExerciseCollection;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -83,7 +84,7 @@ class ExerciseController extends Controller
 
             $exercise->update($validatedData);
 
-            return response()->json(['message' => 'Exercise updated successfully!', 'data' => $exercise], 204);
+            return response()->json(['message' => 'Exercise updated successfully!', 'data' => $exercise], 201);
         }
     }
 
@@ -94,6 +95,27 @@ class ExerciseController extends Controller
     {
         $exercise->delete();
 
-        return response()->json(['message' => 'Exercise deleted successfully', 'data' => $exercise], 204);
+        return response()->json(['message' => 'Exercise deleted successfully', 'data' => $exercise], 201);
+    }
+
+    public function export()
+    {
+        $exercises = Exercise::all();
+        $csvFileName = 'exercises.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="' . $csvFileName . '"',
+        ];
+
+        $handle = fopen('php://output', 'w');
+        fputcsv($handle, ['Exercise id', 'Name', 'Description']);
+
+        foreach ($exercises as $exercise) {
+            fputcsv($handle, [$exercise->exercise_id, $exercise->name, $exercise->description]);
+        }
+
+        fclose($handle);
+
+        return Response::make('', 200, $headers);
     }
 }
