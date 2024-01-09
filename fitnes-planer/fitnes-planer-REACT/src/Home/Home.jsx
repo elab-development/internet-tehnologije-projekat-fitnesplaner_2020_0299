@@ -5,7 +5,7 @@ import './Home.css';
 
 
 // videi
-import video1 from './images/video1.mov';
+// import video1 from './images/video1.mov';
 
 // Importing images
 import client1 from './images/home1.png';
@@ -107,9 +107,9 @@ useEffect(() => {
 
       <header className="header">
       <div className="header-content">
-        <video autoPlay loop muted className="header-video" style={{ position: 'absolute', width: '100%', left: '50%', top: '50%', height: 'auto', transform: 'translate(-50%, -50%)', zIndex: '-1'}}>
+        {/*<video autoPlay loop muted className="header-video" style={{ position: 'absolute', width: '100%', left: '50%', top: '50%', height: 'auto', transform: 'translate(-50%, -50%)', zIndex: '-1'}}>
           <source src={video1} type="video/mp4" />
-        </video>
+        </video>*/}
         <div className="header-text">
             <h1 className="company-name">(064-50-60-200)</h1>
             <p className="slogan">Pozovite odmah</p>
