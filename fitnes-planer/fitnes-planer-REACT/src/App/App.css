@@ -1,127 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
 @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 /* Color Palette */
 :root {
-    --dark-blue: #00131c;
-    --light-blue: #70a4d2;
-    --dark-cream: #D4AF37; 
-    --light-cream: #f1d7a2; 
-    --dark-gray: #2c3947;
-    --white: #fffef8;
+  --dark-blue: #00131c;
+  --light-blue: #70a4d2;
+  --dark-cream: #D4AF37; 
+  --light-cream: #f1d7a2; 
+  --dark-gray: #2c3947;
+  --white: #fffef8;
 }
 
-/* General styling */
+/* Reset and General Styling */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-#root {
-    width: 100%;
-    min-height: 100vh; /* If you want it to take full height as well */
-}
-
 
 html, body {
-    width: 100%; /* Ensuring full width */
-    height: 100%; /* Ensuring full height */
-    overflow-x: hidden; /* Prevents horizontal scrollbar */
-}
-
-body {
-    font-family: 'Questrial', sans-serif;
-    background-color: var(--white); /* Set a base background color */
-    color: var(--dark-gray); /* Set a base text color */
+  font-family: 'Arial', sans-serif;
+  font-weight: 900;
+  background-color: var(--white);
+  color: var(--dark-gray);
+  overflow-x: hidden;
 }
 
 .app {
-    width: 100%; /* Ensuring app stretches to full width */
+  min-height: 100vh; /* Full viewport height */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
-/* Navbar styling */
+/* Navbar Styling */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%; /* Uses 100% of the viewport width */
-    height: 80px;
-    background-color: var(--dark-blue);
-    color: var(--white);
-    padding: 0 20px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: height 0.3s;
 }
 
+.navbar.sticky {
+  height: 60px; /* Reduced height when sticky */
+}
 
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
 
-.logo-container, .buttons, .contact {
-    display: flex;
-    align-items: center;
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--white);
 }
 
 .logo img {
-    height: 70px;
-    width: 70px;
-    object-fit: contain;
-    margin-right: 10px;
+  height: 50px; /* Adjusted for responsive design */
+  margin-right: 10px;
 }
 
 .textLogo {
-    font-weight: bold;
-    color: var(--white);
-    font-size: 30px;
-    font-weight: 900;
+  font-size: 24px;
 }
 
-.buttons .dropdown {
-    margin: 0 10px;
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: var(--white);
 }
 
-.dropdown a {
-    text-decoration: none;
-    color: var(--white);
-    padding: 10px;
-    display: block;
-}
-
-.contact button {
-    padding: 8px 16px;
-    background-color: var(--light-blue);
-    color: var(--white);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.contact button:hover {
-    background-color: var(--dark-blue);
-}
-
-/* Main content styling */
-.portal {
-    min-height: calc(100vh - 80px); /* Adjust the height minus navbar */
-    padding: 20px;
-    background-color: var(--belo);
-}
-
-.footer {
-    width: 100%; /* Ensure footer takes full width */
-    text-align: center;
-    padding: 10px 0;
-    background-color: var(--dark-gray);
-    color: var(--light-cream);
-}
-
-/* Responsive styling */
+/* Responsive Styling */
 @media (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        height: auto;
-    }
+  .navbar-content {
+    flex-direction: column;
+  }
 
-    .logo-container, .buttons {
-        margin-bottom: 10px;
-    }
+  .nav-links {
+    margin-top: 10px;
+  }
+
+  .nav-links a {
+    display: block;
+    text-align: center;
+  }
 }

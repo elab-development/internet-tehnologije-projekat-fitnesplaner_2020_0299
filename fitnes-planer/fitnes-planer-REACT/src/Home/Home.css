@@ -1,37 +1,76 @@
 /* Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 :root {
     --dark-blue: #00131c;
-    --blue: #1a2b33;
-    --light-blue: #70a4d2;
-    --dark-cream: #D4AF37;
-    --light-cream: #f1d7a2;
-    --dark-gray: #2c3947;
+    --blue: #003366;
+    --light-blue: #a6d1e6;
+
+    --dark-gray: #a0a0a0;
     --white: #fffef8;
 }
-
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at center bottom, var(--blue), var(--dark-blue)); /* Updated to darker blue */
+    font-weight: 500;
+    font-family: 'Arial', sans-serif;
+/*    background:white; */
+    background:var(--dark-blue); 
     color: var(--white);
-    background-attachment: fixed; /* Added to make background fixed */
-    height: 200vh; /* Set the height to 200vh */
+    background-attachment: fixed; 
+    /* Remove the fixed height to avoid extra scrolling */
 }
 
 .home-container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: auto;
+    padding: 20px 0;
     text-align: center;
+    /* Ensure it doesn't scroll independently */
+    overflow: hidden; /* or you can remove this line if not needed */
+    transition: transform 0.3s ease;
 }
 
+
 .header {
-    padding: 20px;
-    background-color: var(--dark-cream);
-    border-radius: 10px;
-    margin-bottom: 20px;
+  margin: 0;
+    height: 350px;
+    width: 100%;
+    padding: 0px;
+    background-color: var(--blue);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    margin-top: 50px;
+
+   overflow: hidden; /* Hide overflow */
+  position: relative; /* Make it a positioning context */
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: height 0.3s ease;
+}
+
+
+.header-content {
+  position: absolute;
+  top:200px;
+  left: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  z-index: 20;
+    
+}
+
+.header-video {
+  position: relative;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: auto;
+  z-index: 21;
 }
 
 .company-name {
@@ -46,20 +85,29 @@ body {
     margin: 0;
 }
 
+.sekcije {
+    position: relative; /* or 'absolute' depending on your layout */
+    z-index: 300;
+    background: radial-gradient(circle at 50% bottom, var(--blue) 0%, var(--dark-blue)); 
+    background-attachment: fixed; 
+}
+
 .services {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-bottom: 20px;
+    margin-top: 0px;
+    padding-top: 20px;
 }
 
 .service-card {
     width: 30%;
     padding: 20px;
-    background-color: var(--light-cream);
+    background-color: transparentč;
     border-radius: 10px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: transparent;
     transition: transform 0.3s ease;
 }
 
@@ -67,23 +115,51 @@ body {
     transform: scale(1.05);
 }
 
+/* ... existing styles ... */
+
+.service-icon {
+  position: relative; /* Ensures the pseudo-element is positioned in relation to this */
+  /* ... other styles ... */
+}
+
 .service-icon img {
-    max-width: 100px;
+    max-width: 200px;
     margin-bottom: 10px;
 }
 
+.service-icon::before {
+  content: '';
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: 155px; /* Adjust size as needed */
+  height: 155px; /* Adjust size as needed */
+  background-color: var(--white);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1; /* Ensures the shadow is behind the icon */
+  opacity: 0; /* Initially invisible */
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-icon::before {
+  opacity: 1; /* Make the shadow visible on hover */
+}
+
+
 .service-title {
     font-size: 1.5rem;
-    color: var(--dark-blue);
+    font-weight: 900;
+    color: var(--white);
 }
 
 .service-description {
     font-size: 1rem;
-    color: var(--dark-gray);
+    color: var(--light-blue);
 }
 
 .footer {
-    background-color: var(--dark-cream);
+    background-color: var(--blue);
     padding: 10px;
     border-radius: 10px;
 }
@@ -100,4 +176,62 @@ body {
 .address {
     font-size: 0.8rem;
     color: var(--dark-gray);
+}
+
+
+
+
+.testimonials {
+  text-align: center;
+  color: var(--gold);
+  padding: 50px 0;
+}
+
+.testimonial-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial {
+  display: none; /* hide all initially */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial.active {
+  display: flex; /* show active one */
+  animation: fadeIn 2s;
+}
+
+.client-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+blockquote {
+  font-style: italic;
+  color: var(--white);
+  background: var(--black);
+  padding: 20px;
+  border-left: 10px solid var(--gold);
+}
+
+cite {
+  margin-top: 10px;
+  color: var(--gold);
+  font-size: 0.9em;
+}
+
+button {
+  /* Style your button */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
