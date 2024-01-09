@@ -26,6 +26,8 @@ html, body {
 }
 
 .app {
+  width: 100%;
+  min-width: 100%;
   min-height: 100vh; /* Full viewport height */
   overflow-x: hidden; /* Hide horizontal overflow */
   overflow-y: auto; /* Enable vertical scrolling */
@@ -75,18 +77,21 @@ html, body {
   color: var(--white);
 }
 
+.portal {
+  width: 100%; /* Ensure main element takes full width */
+  min-width: 100%;
+}
+
+.footer {
+  width: 100%; /* Ensure footer element takes full width */
+  background-color: var(--blue);
+  padding: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
 /* Responsive Styling */
 @media (max-width: 768px) {
-  .navbar-content {
-    flex-direction: column;
-  }
 
-  .nav-links {
-    margin-top: 10px;
-  }
 
-  .nav-links a {
-    display: block;
-    text-align: center;
-  }
+
 }

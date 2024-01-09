@@ -2,7 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Logo from '../images/logo.png';
 import './App.css';
+
 import Home from "../Home/Home.jsx";
+import Treninzi from "../Treninzi/Treninzi.jsx";
+import Vezbe from "../Vezbe/Vezbe.jsx";
+import Grupe from "../Grupe/Grupe.jsx";
+
 
 function App() {
   return (
@@ -15,9 +20,9 @@ function App() {
               <h1 className="textLogo">FIT PLAN</h1>
             </Link>
             <div className="nav-links">
-              <Link to="/">Grupe</Link>
-              <Link to="/">Vezbe</Link>
-              <Link to="/">Treninzi</Link>
+              <Link to="/grupe">Grupe</Link>
+              <Link to="/vezbe">Vezbe</Link>
+              <Link to="/treninzi">Treninzi</Link>
             </div>
           </div>
         </nav>
@@ -25,6 +30,9 @@ function App() {
         <main className="portal">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/treninzi" element={<Treninzi />} />
+            <Route path="/vezbe" element={<Vezbe />} />
+            <Route path="/grupe" element={<Grupe />} />
           </Routes>
         </main>
 

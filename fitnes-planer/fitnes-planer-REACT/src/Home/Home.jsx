@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
 import './Home.css';
 
 
 
 // videi
-// import video1 from './images/video1.mov';
+// import video1 from './images/Video.mp4';
 
 // Importing images
 import client1 from './images/home1.png';
@@ -17,6 +17,11 @@ import krug3 from './images/krug3.png';
 import krug4 from './images/krug4.png';
 import krug5 from './images/krug5.png';
 
+// import krug1 from './images/alt/1.png';
+// import krug2 from './images/alt/2.png';
+// import krug3 from './images/alt/3.png';
+// import krug4 from './images/alt/4.png';
+// import krug5 from './images/alt/5.png';
 
 
 
@@ -32,8 +37,13 @@ function Home() {
 useEffect(() => {
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    const newHeight = Math.max(100, 350 - scrollPosition); // Adjusted for min height
-    const scaleFactor = newHeight / 350; // Calculate scale factor
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const viewportHeight = window.innerHeight;
+    const originalHeaderHeight = isMobile ? 240 : viewportHeight * 0.5; // 240px for mobile, 50vh for desktop
+    const minHeight = 100;
+    const maxHeight = originalHeaderHeight;
+    const newHeight = Math.max(minHeight, maxHeight - scrollPosition);
+    const scaleFactor = newHeight / maxHeight;
 
     const header = document.querySelector('.header');
     const headerText = document.querySelector('.header-text');
@@ -52,6 +62,26 @@ useEffect(() => {
 
     // Set dynamic padding-top for .services
     services.style.paddingTop = `${dynamicPadding}px`;
+
+    // Border radius changes
+    const maxBorderRadius = 500; // Maximum border radius
+    const borderRadiusChangeRate = 0.9; // Rate of change (adjust as needed)
+    let newBorderRadius = 10 + scrollPosition * borderRadiusChangeRate;
+    newBorderRadius = Math.min(newBorderRadius, maxBorderRadius); // Ensures border radius isn't more than max
+
+    // Apply new border radius to header
+    header.style.borderBottomLeftRadius = `${newBorderRadius}px`;
+    header.style.borderBottomRightRadius = `${newBorderRadius}px`;
+
+    // Width changes
+    const maxWidthPercentage = 100; // Maximum width in percentage
+    const minWidthPercentage = 20; // Minimum width in percentage
+    const widthChangeRate = (maxWidthPercentage - minWidthPercentage) / 300; // Adjust width change rate
+    let newWidthPercentage = maxWidthPercentage - scrollPosition * widthChangeRate;
+    newWidthPercentage = Math.max(newWidthPercentage, minWidthPercentage); // Ensures width isn't less than min
+
+    // Apply new width to header
+    header.style.width = `${newWidthPercentage}%`;
   };
 
   window.addEventListener('scroll', handleScroll);
@@ -60,19 +90,20 @@ useEffect(() => {
 }, []);
 
 
+
   const testimonials = [
     {
-      quote: "The attention to detail and care in their service is unparalleled! My body has never looked better.",
+      quote: "The attention to detail and care in their service is unparalleled! My car has never looked better.",
       client: "Predrag ********",
       image: client1 // Reference the imported image here
     },
     {
-      quote: "The attention to detail and care in their service is unparalleled! My body has never looked better.",
+      quote: "The attention to detail and care in their service is unparalleled! My car has never looked better.",
       client: "Petar ********",
       image: client1 // Reference the imported image here
     },
     {
-      quote: "The attention to detail and care in their service is unparalleled! My body has never looked better.",
+      quote: "The attention to detail and care in their service is unparalleled! My car has never looked better.",
       client: "Filip ********",
       image: client1 // Reference the imported image here
     },
@@ -80,6 +111,14 @@ useEffect(() => {
   ];
 
 
+  // Hook to scroll to the top when the component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+
+
+// Sta musterije kazu automatsko listanje
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTestimonial((prevActiveTestimonial) => (prevActiveTestimonial + 1) % testimonials.length);
@@ -101,18 +140,47 @@ useEffect(() => {
   };
 
 
+  // Ucitavanje videa
+  const videoRef = useRef(null);
+
+    useEffect(() => {
+        // Play the video as soon as the component mounts
+        if (videoRef.current) {
+            videoRef.current.play().catch(error => {
+                console.error('Error attempting to play video:', error);
+            });
+        }
+    }, []);
+
+
   return (
     <animated.div style={fadeIn} className="home-container">
 
 
       <header className="header">
       <div className="header-content">
-        {/*<video autoPlay loop muted className="header-video" style={{ position: 'absolute', width: '100%', left: '50%', top: '50%', height: 'auto', transform: 'translate(-50%, -50%)', zIndex: '-1'}}>
-          <source src={video1} type="video/mp4" />
+ {/*       <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline // Added for iOS support
+            className="header-video" 
+            style={{ 
+                position: 'absolute', 
+                width: '100vw', 
+                left: '-40vw', 
+                top: '-250px', 
+                height: 'auto', 
+                minHeight: '600px'
+            }}
+            ref={videoRef} // Add a reference to the video
+        >
+            <source src={video1} type="video/mp4" />
         </video>*/}
+
         <div className="header-text">
-            <h1 className="company-name">(064-50-60-200)</h1>
-            <p className="slogan">Pozovite odmah</p>
+            <h1 className="company-name">FIT PLAN</h1>
+            <p className="slogan">Vas fitness saputnik</p>
         </div>
       </div>
       </header>
@@ -125,50 +193,60 @@ useEffect(() => {
           <div className="service-icon">
             <img src={krug1} alt="Krug1" />
           </div>
-          <h2 className="service-title">Treninzi</h2>
-          <p className="service-description">
+          <div className="service-text">
+            <h2 className="service-title">Treninzi</h2>
+            <p className="service-description">
             Nasi treninzi sastoje se od pojedinacnih vezbi za svaku grupu misica.
           </p>
+          </div>
         </div>
 
         <div className="service-card">
           <div className="service-icon">
             <img src={krug2} alt="Krug2" />
           </div>
-          <h2 className="service-title">Vezbe</h2>
-          <p className="service-description">
+          <div className="service-text">
+            <h2 className="service-title">Vezbe</h2>
+            <p className="service-description">
             Transformisite svoje telo jednostavnim planom vezbi.
           </p>
+          </div>
         </div>
 
         <div className="service-card">
           <div className="service-icon">
             <img src={krug3} alt="Krug3" />
           </div>
-          <h2 className="service-title">Proteini</h2>
-          <p className="service-description">
+          <div className="service-text">
+            <h2 className="service-title">Suplementi</h2>
+            <p className="service-description">
             Zastite i obnovite misice nasim proteinskim sejkovima.
           </p>
+          </div>
         </div>
 
         <div className="service-card">
           <div className="service-icon">
             <img src={krug4} alt="Krug4" />
           </div>
-          <h2 className="service-title">Teretane</h2>
-          <p className="service-description">
+          <div className="service-text">
+            <h2 className="service-title">Teretane</h2>
+            <p className="service-description">
             Poboljsajte celokupan dozivljaj posetom nase teretane.
           </p>
+          </div>
         </div>
 
         <div className="service-card">
           <div className="service-icon">
             <img src={krug5} alt="Krug4" />
           </div>
-          <h2 className="service-title">Ishrana</h2>
-          <p className="service-description">
+          <div className="service-text">
+            <h2 className="service-title">Ishrana</h2>
+             <p className="service-description">
             Poboljsate svoje zdravlje nasim neverovatnim programom ishrane!
           </p>
+          </div>
         </div>
       </section>
 
