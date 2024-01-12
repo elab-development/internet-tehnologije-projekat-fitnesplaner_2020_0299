@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+/* Color Palette */
+:root {
+  --dark-blue: #00131c;
+  --light-blue: #70a4d2;
+  --dark-cream: #D4AF37; 
+  --light-cream: #f1d7a2; 
+  --dark-gray: #2c3947;
+  --white: #fffef8;
+}
+
+/* Reset and General Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Arial', sans-serif;
+  font-weight: 900;
+  background-color: var(--white);
+  color: var(--dark-gray);
+  overflow-x: hidden;
+}
+
+.app {
+  width: 100%;
+  min-width: 100%;
+  min-height: 100vh; /* Full viewport height */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Navbar Styling */
+.navbar {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: height 0.3s;
+}
+
+.navbar.sticky {
+  height: 60px; /* Reduced height when sticky */
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.logo img {
+  height: 50px; /* Adjusted for responsive design */
+  margin-right: 10px;
+}
+
+.textLogo {
+  font-size: 24px;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.portal {
+  width: 100%; /* Ensure main element takes full width */
+  min-width: 100%;
+}
+
+.footer {
+  width: 100%; /* Ensure footer element takes full width */
+  background-color: var(--blue);
+  padding: 10px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+/* Responsive Styling */
+@media (max-width: 768px) {
+
+
+
+}

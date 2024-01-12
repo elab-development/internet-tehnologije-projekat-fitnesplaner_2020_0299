@@ -1,0 +1,47 @@
+
+/* App.css */
+:root {
+    --dark-blue: #00131c;
+    --blue: #003366;
+    --light-blue: #a6d1e6;
+    --dark-gray: #a0a0a0;
+    --white: #fffef8;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+header {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 1rem;
+    text-align: center;
+}
+
+.grupe {
+    padding: 2rem;
+    margin-top: 50px;
+}
+
+.muscle-group {
+    background-color: var(--light-blue);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+footer {
+    background-color: var(--dark-gray);
+    color: var(--white);
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+

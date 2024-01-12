@@ -1,0 +1,68 @@
+/* Home.css */
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+:root {
+    --dark-blue: #00131c;
+    --blue: #003366;
+    --light-blue: #a6d1e6;
+
+    --dark-gray: #a0a0a0;
+    --white: #fffef8;
+}
+
+
+.treninzi {
+    width: 100%;
+    max-width: 100vw;
+    height: 100vh; /* Set max-width to 100% of the viewport width */
+    margin: auto;
+    margin-top: 100px;
+    text-align: center;
+    overflow: hidden; /* Keep if you want to prevent horizontal scrolling */
+    transition: transform 0.3s ease;
+    
+}
+
+.treninzi {
+  color: var(--white);
+  background-color: var(--dark-blue);
+  padding: 20px;
+}
+
+.treninzi h1 {
+  text-align: center;
+  color: var(--light-blue);
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.category-table {
+  background-color: var(--blue);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.category-table h2 {
+  color: var(--light-blue);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid var(--light-blue);
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+  color: var(--white);
+}
+
