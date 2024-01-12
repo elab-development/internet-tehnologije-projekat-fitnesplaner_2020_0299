@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
@@ -43,5 +44,14 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json(['message' => 'Hi '.$user->name.', welcome to home','access_token' => $token, 'token_type' => 'Bearer']);
+    }
+
+    public function logout(Request $request) {
+        $accessToken = $request->bearerToken();
+
+        $token = PersonalAccessToken::findToken($accessToken);
+        $token->delete();
+
+        return response()->json(['message' => "User succesfully logged out!", 'token' => $token]);    
     }
 }
