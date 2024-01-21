@@ -1,0 +1,28 @@
+.container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 100vh !important;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 100px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-element {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

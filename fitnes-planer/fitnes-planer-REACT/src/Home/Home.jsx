@@ -34,60 +34,60 @@ function Home() {
   }, []);
 
 
-useEffect(() => {
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY;
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const viewportHeight = window.innerHeight;
-    const originalHeaderHeight = isMobile ? 240 : viewportHeight * 0.5; // 240px for mobile, 50vh for desktop
-    const minHeight = 100;
-    const maxHeight = originalHeaderHeight;
-    const newHeight = Math.max(minHeight, maxHeight - scrollPosition);
-    const scaleFactor = newHeight / maxHeight;
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      const viewportHeight = window.innerHeight;
+      const originalHeaderHeight = isMobile ? 240 : viewportHeight * 0.5; // 240px for mobile, 50vh for desktop
+      const minHeight = 100;
+      const maxHeight = originalHeaderHeight;
+      const newHeight = Math.max(minHeight, maxHeight - scrollPosition);
+      const scaleFactor = newHeight / maxHeight;
 
-    const header = document.querySelector('.header');
-    const headerText = document.querySelector('.header-text');
-    const services = document.querySelector('.services');
+      const header = document.querySelector('.header');
+      const headerText = document.querySelector('.header-text');
+      const services = document.querySelector('.services');
 
-    header.style.height = `${newHeight}px`;
-    headerText.style.transform = `scale(${scaleFactor})`;
+      header.style.height = `${newHeight}px`;
+      headerText.style.transform = `scale(${scaleFactor})`;
 
-    // Define max and min padding values
-    const maxPadding = 120;
-    const minPadding = 0;
+      // Define max and min padding values
+      const maxPadding = 120;
+      const minPadding = 0;
 
-    // Calculate dynamic padding based on scroll position
-    let dynamicPadding = minPadding + scrollPosition;
-    dynamicPadding = Math.min(dynamicPadding, maxPadding); // Ensures padding isn't more than max
+      // Calculate dynamic padding based on scroll position
+      let dynamicPadding = minPadding + scrollPosition;
+      dynamicPadding = Math.min(dynamicPadding, maxPadding); // Ensures padding isn't more than max
 
-    // Set dynamic padding-top for .services
-    services.style.paddingTop = `${dynamicPadding}px`;
+      // Set dynamic padding-top for .services
+      services.style.paddingTop = `${dynamicPadding}px`;
 
-    // Border radius changes
-    const maxBorderRadius = 500; // Maximum border radius
-    const borderRadiusChangeRate = 0.9; // Rate of change (adjust as needed)
-    let newBorderRadius = 10 + scrollPosition * borderRadiusChangeRate;
-    newBorderRadius = Math.min(newBorderRadius, maxBorderRadius); // Ensures border radius isn't more than max
+      // Border radius changes
+      const maxBorderRadius = 500; // Maximum border radius
+      const borderRadiusChangeRate = 0.9; // Rate of change (adjust as needed)
+      let newBorderRadius = 10 + scrollPosition * borderRadiusChangeRate;
+      newBorderRadius = Math.min(newBorderRadius, maxBorderRadius); // Ensures border radius isn't more than max
 
-    // Apply new border radius to header
-    header.style.borderBottomLeftRadius = `${newBorderRadius}px`;
-    header.style.borderBottomRightRadius = `${newBorderRadius}px`;
+      // Apply new border radius to header
+      header.style.borderBottomLeftRadius = `${newBorderRadius}px`;
+      header.style.borderBottomRightRadius = `${newBorderRadius}px`;
 
-    // Width changes
-    const maxWidthPercentage = 100; // Maximum width in percentage
-    const minWidthPercentage = 20; // Minimum width in percentage
-    const widthChangeRate = (maxWidthPercentage - minWidthPercentage) / 300; // Adjust width change rate
-    let newWidthPercentage = maxWidthPercentage - scrollPosition * widthChangeRate;
-    newWidthPercentage = Math.max(newWidthPercentage, minWidthPercentage); // Ensures width isn't less than min
+      // Width changes
+      const maxWidthPercentage = 100; // Maximum width in percentage
+      const minWidthPercentage = 20; // Minimum width in percentage
+      const widthChangeRate = (maxWidthPercentage - minWidthPercentage) / 300; // Adjust width change rate
+      let newWidthPercentage = maxWidthPercentage - scrollPosition * widthChangeRate;
+      newWidthPercentage = Math.max(newWidthPercentage, minWidthPercentage); // Ensures width isn't less than min
 
-    // Apply new width to header
-    header.style.width = `${newWidthPercentage}%`;
-  };
+      // Apply new width to header
+      header.style.width = `${newWidthPercentage}%`;
+    };
 
-  window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
 
 
@@ -118,7 +118,7 @@ useEffect(() => {
 
 
 
-// Sta musterije kazu automatsko listanje
+  // Sta musterije kazu automatsko listanje
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTestimonial((prevActiveTestimonial) => (prevActiveTestimonial + 1) % testimonials.length);
@@ -143,14 +143,14 @@ useEffect(() => {
   // Ucitavanje videa
   const videoRef = useRef(null);
 
-    useEffect(() => {
-        // Play the video as soon as the component mounts
-        if (videoRef.current) {
-            videoRef.current.play().catch(error => {
-                console.error('Error attempting to play video:', error);
-            });
-        }
-    }, []);
+  useEffect(() => {
+    // Play the video as soon as the component mounts
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.error('Error attempting to play video:', error);
+      });
+    }
+  }, []);
 
 
   return (
@@ -158,8 +158,8 @@ useEffect(() => {
 
 
       <header className="header">
-      <div className="header-content">
- {/*       <video 
+        <div className="header-content">
+          {/*       <video 
             autoPlay 
             loop 
             muted 
@@ -178,98 +178,98 @@ useEffect(() => {
             <source src={video1} type="video/mp4" />
         </video>*/}
 
-        <div className="header-text">
+          <div className="header-text">
             <h1 className="company-name">FIT PLAN</h1>
             <p className="slogan">Vas fitness saputnik</p>
+          </div>
         </div>
-      </div>
       </header>
 
       <div className="sekcije">
 
-      <section className="services">
-        {/* Replace with actual service details */}
-        <div className="service-card">
-          <div className="service-icon">
-            <img src={krug1} alt="Krug1" />
+        <section className="services">
+          {/* Replace with actual service details */}
+          <div className="service-card">
+            <div className="service-icon">
+              <img src={krug1} alt="Krug1" />
+            </div>
+            <div className="service-text">
+              <h2 className="service-title">Treninzi</h2>
+              <p className="service-description">
+                Nasi treninzi sastoje se od pojedinacnih vezbi za svaku grupu misica.
+              </p>
+            </div>
           </div>
-          <div className="service-text">
-            <h2 className="service-title">Treninzi</h2>
-            <p className="service-description">
-            Nasi treninzi sastoje se od pojedinacnih vezbi za svaku grupu misica.
-          </p>
-          </div>
-        </div>
 
-        <div className="service-card">
-          <div className="service-icon">
-            <img src={krug2} alt="Krug2" />
+          <div className="service-card">
+            <div className="service-icon">
+              <img src={krug2} alt="Krug2" />
+            </div>
+            <div className="service-text">
+              <h2 className="service-title">Vezbe</h2>
+              <p className="service-description">
+                Transformisite svoje telo jednostavnim planom vezbi.
+              </p>
+            </div>
           </div>
-          <div className="service-text">
-            <h2 className="service-title">Vezbe</h2>
-            <p className="service-description">
-            Transformisite svoje telo jednostavnim planom vezbi.
-          </p>
-          </div>
-        </div>
 
-        <div className="service-card">
-          <div className="service-icon">
-            <img src={krug3} alt="Krug3" />
+          <div className="service-card">
+            <div className="service-icon">
+              <img src={krug3} alt="Krug3" />
+            </div>
+            <div className="service-text">
+              <h2 className="service-title">Suplementi</h2>
+              <p className="service-description">
+                Zastite i obnovite misice nasim proteinskim sejkovima.
+              </p>
+            </div>
           </div>
-          <div className="service-text">
-            <h2 className="service-title">Suplementi</h2>
-            <p className="service-description">
-            Zastite i obnovite misice nasim proteinskim sejkovima.
-          </p>
-          </div>
-        </div>
 
-        <div className="service-card">
-          <div className="service-icon">
-            <img src={krug4} alt="Krug4" />
+          <div className="service-card">
+            <div className="service-icon">
+              <img src={krug4} alt="Krug4" />
+            </div>
+            <div className="service-text">
+              <h2 className="service-title">Teretane</h2>
+              <p className="service-description">
+                Poboljsajte celokupan dozivljaj posetom nase teretane.
+              </p>
+            </div>
           </div>
-          <div className="service-text">
-            <h2 className="service-title">Teretane</h2>
-            <p className="service-description">
-            Poboljsajte celokupan dozivljaj posetom nase teretane.
-          </p>
+
+          <div className="service-card">
+            <div className="service-icon">
+              <img src={krug5} alt="Krug4" />
+            </div>
+            <div className="service-text">
+              <h2 className="service-title">Ishrana</h2>
+              <p className="service-description">
+                Poboljsate svoje zdravlje nasim neverovatnim programom ishrane!
+              </p>
+            </div>
           </div>
-        </div>
-
-        <div className="service-card">
-          <div className="service-icon">
-            <img src={krug5} alt="Krug4" />
-          </div>
-          <div className="service-text">
-            <h2 className="service-title">Ishrana</h2>
-             <p className="service-description">
-            Poboljsate svoje zdravlje nasim neverovatnim programom ishrane!
-          </p>
-          </div>
-        </div>
-      </section>
-
-
-
-    <section className="testimonials">
-        <h2>Šta nase mušterije kažu</h2>
-        <div className="testimonial-container">
-          {testimonials.map((testimonial, index) => (
-            <animated.div key={index} className={`testimonial ${activeTestimonial === index ? 'active' : ''}`}>
-              <img src={testimonial.image} alt="Client" className="client-photo" />
-              <blockquote>
-                "{testimonial.quote}"
-              </blockquote>
-              <cite>- {testimonial.client}</cite>
-            </animated.div>
-          ))}
-        </div>
-        <button onClick={nextTestimonial}>Next</button>
-    </section>
+        </section>
 
 
-    </div>
+
+        <section className="testimonials">
+          <h2>Šta nase mušterije kažu</h2>
+          <div className="testimonial-container">
+            {testimonials.map((testimonial, index) => (
+              <animated.div key={index} className={`testimonial ${activeTestimonial === index ? 'active' : ''}`}>
+                <img src={testimonial.image} alt="Client" className="client-photo" />
+                <blockquote>
+                  "{testimonial.quote}"
+                </blockquote>
+                <cite>- {testimonial.client}</cite>
+              </animated.div>
+            ))}
+          </div>
+          <button onClick={nextTestimonial}>Next</button>
+        </section>
+
+
+      </div>
 
     </animated.div>
   );
