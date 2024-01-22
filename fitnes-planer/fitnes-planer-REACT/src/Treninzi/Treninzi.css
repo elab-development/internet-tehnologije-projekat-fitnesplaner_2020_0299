@@ -34,7 +34,7 @@
   color: var(--light-blue);
 }
 
-.pricing-grid {
+.workout-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
@@ -66,3 +66,14 @@ td {
   color: var(--white);
 }
 
+.grid-container {
+  margin-top: 15px !important;
+}
+
+.forma {
+  display: flex !important;
+  flex-direction: column !important;
+  margin-top: 100px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

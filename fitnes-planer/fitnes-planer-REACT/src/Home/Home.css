@@ -67,16 +67,11 @@ body {
 }
 
 
-.header-content {
-  position: absolute;
-
-  left: 40%;
+.header-text {
   display: flex;
-  flex-direction: column;
   align-items: center;
-
-  z-index: 20;
-    
+  justify-content: center;
+  flex-direction: column;
 }
 
 

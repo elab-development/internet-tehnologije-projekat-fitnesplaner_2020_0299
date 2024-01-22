@@ -1,50 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Treninzi.css';
+import { fetchWorkouts, submitWorkout, deleteWorkout } from '../api/api';
+import { Grid, Card, CardHeader, CardActionArea, CardActions } from '@mui/material';
+import TreninziForma from './TreninziForma.jsx';
 
 function Treninzi() {
-  
+  const [workouts, setWorkouts] = useState(null);
+
+  useEffect(() => {
+    fetchWorkouts().then((data) => { setWorkouts(data.workouts); console.log(data.workouts) });
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Example categories and services - modify as needed
-  const categories = {
-    'Stomak': [
-      { service: 'Trbusnjaci', price: '4 x 10' },
-      { service: 'Biciklica', price: '3 x 2min' }
-    ],
-    'Ramena': [
-      { service: 'Propadanja', price: '4 x 10' },
-      { service: 'Sprava', price: '4 x 10' }
-    ],
-    'Ledja': [
-      { service: 'Veslanje', price: '2 x 5min' },
-      { service: 'Plivanje', price: '10 x duzina' }
-    ],
-    // Add more categories and services here
+  const handleAddWorkout = (newWorkout) => {
+    submitWorkout(newWorkout).then(() => window.location.reload());
+  };
+
+  const handleDelete = (workoutId) => {
+    deleteWorkout(workoutId).then(() => window.location.reload());
   };
 
   return (
     <div className="treninzi">
       <h1> Treninzi </h1>
-      <div className="pricing-grid">
-        {Object.keys(categories).map(category => (
-          <div className="category-table" key={category}>
-            <h2>{category}</h2>
-            <table>
-              <tbody>
-                {categories[category].map(({ service, price }) => (
-                  <tr key={service}>
-                    <td>{service}</td>
-                    <td>{price}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <Grid container spacing={2} className='grid-container'>
+        {workouts?.map(workout => (
+          <Grid key={workout.workout_id} item xs={6} sm={4} md={3} className='grid-item' direction="column" alignItems="center" justifyContent="center">
+            <Card key={workout.workout_id} variant="outlined" sx={{backgroundColor: "#a6d1e6"}}>
+              <CardActionArea component={Link} to={workout.workout_id.toString()}>
+                <CardHeader
+                  title={workout.title}
+                  subheader={workout.date}
+                />
+              </CardActionArea>
+              <CardActions>
+                  <button onClick={() => handleDelete(workout.workout_id)}>Delete Workout</button>
+              </CardActions>
+            </Card>
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+
+      <TreninziForma onAddWorkout={handleAddWorkout} />
+    </div >
   );
 }
 

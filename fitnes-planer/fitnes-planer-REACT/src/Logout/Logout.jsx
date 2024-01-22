@@ -7,7 +7,7 @@ function Logout() {
     }, []);
 
     return (
-        null
+        <h2 style={{color: "white", fontSize: "50px", marginTop: "100px"}}>You're being logged out...</h2>
     );
 };
 

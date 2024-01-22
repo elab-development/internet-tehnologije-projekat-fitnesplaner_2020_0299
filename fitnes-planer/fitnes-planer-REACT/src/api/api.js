@@ -7,7 +7,36 @@ export async function fetchWorkouts() {
             "Authorization": `Bearer ${token}`
         },
     });
+
+    const data = await response.json();
+    return data;
 };
+
+export async function submitWorkout(newWorkout) {
+    const response = await fetch(`http://localhost:8000/api/workouts`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({date: newWorkout.date, title: newWorkout.title, notes: newWorkout.notes, rating: newWorkout.rating})
+    });
+
+    const data = await response.json();
+    return data;
+};
+
+export async function deleteWorkout(workoutId) {
+    const response = await fetch(`http://localhost:8000/api/workouts/${workoutId}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+    });
+
+    const data = await response.json();
+    return data;
+}
 
 export async function login(email, password) {
     const response = await fetch(`http://localhost:8000/api/login`, {
