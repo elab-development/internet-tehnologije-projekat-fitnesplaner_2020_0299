@@ -42,7 +42,7 @@ const WorkoutForm = ({ onAddWorkout }) => {
   return (
     <form className='forma' onSubmit={handleSubmit}>
       <TextField
-        label="Workout title"
+        label="Ime treninga"
         variant="outlined"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -51,7 +51,7 @@ const WorkoutForm = ({ onAddWorkout }) => {
       />
 
       <TextField
-        label="Workout date"
+        label="Datum treninga"
         type="date"
         variant="outlined"
         InputLabelProps={{ shrink: true }}
@@ -62,7 +62,7 @@ const WorkoutForm = ({ onAddWorkout }) => {
       />
 
       <TextField
-        label="Notes"
+        label="Beleske"
         variant="outlined"
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
@@ -71,7 +71,7 @@ const WorkoutForm = ({ onAddWorkout }) => {
       />
 
       <TextField
-        label="Rating (1-5)"
+        label="Ocena (1-5)"
         type="number"
         variant="outlined"
         value={rating}
@@ -82,7 +82,7 @@ const WorkoutForm = ({ onAddWorkout }) => {
       {ratingError && <Alert severity="error">{ratingError}</Alert>}
 
       <Button sx={{marginTop: "20px"}} type="submit" variant="contained" color="primary">
-        Add Workout
+        Dodaj Trening
       </Button>
     </form>
   );

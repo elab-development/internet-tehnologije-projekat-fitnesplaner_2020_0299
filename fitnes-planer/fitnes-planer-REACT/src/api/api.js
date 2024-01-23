@@ -12,6 +12,18 @@ export async function fetchWorkouts() {
     return data;
 };
 
+export async function fetchWorkoutExercises(id) {
+    const response = await fetch(`http://localhost:8000/api/workouts/${id}/exercises`, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+    });
+
+    const data = await response.json();
+    return data;
+};
+
 export async function submitWorkout(newWorkout) {
     const response = await fetch(`http://localhost:8000/api/workouts`, {
         method: "POST",
@@ -26,9 +38,35 @@ export async function submitWorkout(newWorkout) {
     return data;
 };
 
+export async function submitWorkoutExercise(id, workoutExercise) {
+    const response = await fetch(`http://localhost:8000/api/workouts/${id}/exercises`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token},`
+        },
+        body: JSON.stringify({exercise_id: workoutExercise.exercise, weight: workoutExercise.weight, sets: workoutExercise.sets, reps: workoutExercise.reps})
+    });
+
+    const data = await response.json();
+    return data;
+};
+
 export async function deleteWorkout(workoutId) {
     const response = await fetch(`http://localhost:8000/api/workouts/${workoutId}`, {
         method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+    });
+
+    const data = await response.json();
+    return data;
+};
+
+export async function fetchExercises() {
+    const response = await fetch('http://localhost:8000/api/exercises', {
+        method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`
         },

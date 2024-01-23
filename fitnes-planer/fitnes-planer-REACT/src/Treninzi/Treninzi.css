@@ -76,4 +76,15 @@ td {
   margin-top: 100px !important;
   align-items: center !important;
   justify-content: center !important;
+  background-color: rgba(166, 209, 230, 0.2);
+  margin: 500px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.trening-grid {
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  padding: 0 200px;
 }

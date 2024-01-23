@@ -10,6 +10,7 @@ import Grupe from "../Grupe/Grupe.jsx";
 import Login from "../Login/Login.jsx";
 import Register from "../Register/Register.jsx";
 import Logout from "../Logout/Logout.jsx";
+import Trening from "../Treninzi/Trening.jsx";
 import { AuthContext } from '../Auth/AuthContext.jsx';
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
                 <Route path="/vezbe" element={<Vezbe />} />
                 <Route path="/grupe" element={<Grupe />} />
                 <Route path="/treninzi" element={<Treninzi />} />
+                <Route path="/treninzi/:id" element={<Trening />} />
                 <Route path="/logout" element={<Logout />} />
               </>
             }

@@ -29,8 +29,8 @@ function Treninzi() {
       <h1> Treninzi </h1>
       <Grid container spacing={2} className='grid-container'>
         {workouts?.map(workout => (
-          <Grid key={workout.workout_id} item xs={6} sm={4} md={3} className='grid-item' direction="column" alignItems="center" justifyContent="center">
-            <Card key={workout.workout_id} variant="outlined" sx={{backgroundColor: "#a6d1e6"}}>
+          <Grid key={workout.workout_id} item xs={6} sm={4} md={3} direction="column" alignItems="center" justifyContent="center">
+            <Card key={workout.workout_id} variant="outlined" sx={{backgroundColor: "#a6d1e6", width: "350px"}}>
               <CardActionArea component={Link} to={workout.workout_id.toString()}>
                 <CardHeader
                   title={workout.title}
@@ -38,7 +38,7 @@ function Treninzi() {
                 />
               </CardActionArea>
               <CardActions>
-                  <button onClick={() => handleDelete(workout.workout_id)}>Delete Workout</button>
+                  <button onClick={() => handleDelete(workout.workout_id)}>Obrisi trening</button>
               </CardActions>
             </Card>
           </Grid>
