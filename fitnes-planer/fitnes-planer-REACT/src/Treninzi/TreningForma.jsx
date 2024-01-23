@@ -28,12 +28,6 @@ const WorkoutForm = ({ onAddWorkoutExercise }) => {
 
         // Pass the new workout to the parent component
         onAddWorkoutExercise(newWorkoutExercise);
-
-        // Clear the form
-        setExercise('');
-        setWeight();
-        setSets();
-        setReps();
     };
 
     const handleChange = (event) => {

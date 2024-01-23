@@ -11,6 +11,7 @@ import Login from "../Login/Login.jsx";
 import Register from "../Register/Register.jsx";
 import Logout from "../Logout/Logout.jsx";
 import Trening from "../Treninzi/Trening.jsx";
+import PredlogVezbi from "../Vezbe/PredlogVezbi.jsx";
 import { AuthContext } from '../Auth/AuthContext.jsx';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                 <>
                   <Link to="/grupe">Grupe</Link>
                   <Link to="/vezbe">Vezbe</Link>
+                  <Link to="/predlogVezbi">Predlog vezbi</Link>
                   <Link to="/treninzi">Treninzi</Link>
                   <Link to="/logout" style={{ color: "red" }}>Logout</Link>
                 </>
@@ -41,6 +43,7 @@ function App() {
                 <>
                   <Link to="/login">Login</Link>
                   <Link to="/register">Register</Link>
+                  <Link to="/predlogVezbi">Predlog vezbi</Link>
                 </>
               )
               }
@@ -54,6 +57,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={!authenticated ? <Login /> : <Navigate to="/" />} />
             <Route path="/register" element={!authenticated ? <Register /> : <Navigate to="/" />} />
+            <Route path="/predlogVezbi" element={<PredlogVezbi />} />
 
             {authenticated &&
               <>

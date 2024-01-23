@@ -45,7 +45,19 @@ export async function submitWorkoutExercise(id, workoutExercise) {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${token},`
         },
-        body: JSON.stringify({exercise_id: workoutExercise.exercise, weight: workoutExercise.weight, sets: workoutExercise.sets, reps: workoutExercise.reps})
+        body: JSON.stringify({exercise_id: workoutExercise.exercise, weight: parseInt(workoutExercise.weight), sets: parseInt(workoutExercise.sets), reps: parseInt(workoutExercise.reps)})
+    });
+
+    const data = await response.json();
+    return data;
+};
+
+export async function deleteWorkoutExercise(id, workoutExercise) {
+    const response = await fetch(`http://localhost:8000/api/workouts/${id}/exercises/${workoutExercise}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
     });
 
     const data = await response.json();
