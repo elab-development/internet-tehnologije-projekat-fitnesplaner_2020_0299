@@ -86,6 +86,11 @@ body, html {
   height: auto;
 }
 
+.photo-and-name {
+  display: flex;
+  flex-direction: column;
+}
+
 .photo-container img {
   width: 100%;
   height: auto;

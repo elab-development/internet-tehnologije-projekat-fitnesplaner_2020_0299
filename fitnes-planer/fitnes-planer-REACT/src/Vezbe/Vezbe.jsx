@@ -3,16 +3,12 @@ import { useSpring, animated } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import './Vezbe.css';
 import VezbaForma from "./VezbaForma.jsx";
-import { fetchExercises } from "../api/api.js";
+import { fetchExercises, submitExercise } from "../api/api.js";
 import { AuthContext } from '../Auth/AuthContext.jsx';
-import img1 from './images/1.png'; // Import the image
-import img2 from './images/2.png'; // Import the image
-import img3 from './images/3.png'; // Import the image
-import img4 from './images/4.png'; // Import the image
-import img5 from './images/5.png'; // Import the image
-import img6 from './images/6.png'; // Import the image
-import img7 from './images/7.png'; // Import the image
-import img8 from './images/8.png'; // Import the image
+import benchpress from './images/benchpress.png'; // Import the image
+import crunches from './images/crunches.png'; // Import the image
+import squat from './images/squat.png'; // Import the image
+import shoulderpress from './images/shoulderpress.png'; // Import the image
 
 function Vezbe() {
   const { role } = useContext(AuthContext);
@@ -21,30 +17,15 @@ function Vezbe() {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   useEffect(() => {
-    fetchExercises().then((data) => { setExercises(data.exercises); console.log(data.exercises) });
+    fetchExercises().then((data) => setExercises(data.exercises));
   }, []);
 
   // Niz importovanih slika koji se prikazuje
-  const photos = [img1, img2, img3, img4, img5, img6, img7, img8 /* ... jos URLova */];
-
-  // Funkcija koja prati index trenutne slike
-  const changePhoto = (direction) => {
-    if (direction === 'next') {
-      setCurrentPhotoIndex((prevIndex) => (prevIndex + 1) % photos.length);
-    } else {
-      setCurrentPhotoIndex((prevIndex) => (prevIndex - 1 + photos.length) % photos.length);
-    }
-  };
+  const photos = { benchpress, crunches, squat, shoulderpress /* ... jos URLova */ }
 
   // PhotoZoom Component
   function PhotoZoom({ photo, onClose }) {
     const animation = useSpring({ opacity: 1, from: { opacity: 0 } });
-
-    const handleArrowClick = (direction, event) => {
-      event.preventDefault(); // Prevent default button behavior
-      event.stopPropagation(); // Prevent click event from reaching the backdrop
-      changePhoto(direction);
-    };
 
     const handleClose = (event) => {
       event.preventDefault(); // Prevent default behavior when closing the photo
@@ -55,13 +36,9 @@ function Vezbe() {
       <animated.div style={animation} className="backdrop" onClick={handleClose}>
         <div className="zoomed-photo-container">
           <animated.img style={animation} src={photo} alt="Zoomed" className="zoomed-photo" />
-          <div className="photo-navigation">
-            <button onClick={(e) => handleArrowClick('prev', e)}>&lt;</button>
-            <button onClick={(e) => handleArrowClick('next', e)}>&gt;</button>
-          </div>
 
           <div className="photo-indicator">
-            {currentPhotoIndex + 1} / {photos.length}
+            {currentPhotoIndex + 1} / {Object.keys(photos).length}
           </div>
         </div>
       </animated.div>
@@ -89,15 +66,20 @@ function Vezbe() {
   function PhotoGallery({ photos, onSelect }) {
     return (
       <div className="photo-grid">
-        {photos.map((photo, index) => (
-          <Photo key={photo} src={photo} onClick={() => onSelect(photo)} index={index} />
+        {exercises.map((exercise, index) => (
+          <div className="photo-and-name">
+            {photos[exercise.name.replace(/\s+/g, '').toLowerCase()] ? (
+              <Photo key={exercise.name} src={photos[exercise.name.replace(/\s+/g, '').toLowerCase()]} onClick={() => onSelect(photos[exercise.name.replace(/\s+/g, '').toLowerCase()])} index={index} />
+            ) : <p style={{ margin: "145px 0" }}>(nema dostupne slike)</p>}
+            <h2>{exercise.name}</h2>
+          </div>
         ))}
       </div>
     );
   };
 
   const handleSubmit = (newExercise) => {
-
+    submitExercise(newExercise).then(() => window.location.reload());
   };
 
   return (
@@ -105,7 +87,7 @@ function Vezbe() {
       <h1> Vezbe </h1><br /><br />
 
       <PhotoGallery photos={photos} onSelect={setSelectedPhoto} />
-      {selectedPhoto && <PhotoZoom photo={photos[currentPhotoIndex]} onClose={() => setSelectedPhoto(null)} />}
+      {selectedPhoto && <PhotoZoom photo={selectedPhoto} onClose={() => setSelectedPhoto(null)} />}
 
       {role == "admin" ? (
         <VezbaForma onAddExercise={handleSubmit} />

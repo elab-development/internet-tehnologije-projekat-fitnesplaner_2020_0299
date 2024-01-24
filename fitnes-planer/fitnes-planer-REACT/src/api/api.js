@@ -86,6 +86,20 @@ export async function fetchExercises() {
 
     const data = await response.json();
     return data;
+};
+
+export async function submitExercise(newExercise) {
+    const response = await fetch(`http://localhost:8000/api/exercises`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({name: newExercise.name, description: newExercise.description})
+    });
+
+    const data = await response.json();
+    return data;
 }
 
 export async function login(email, password) {
