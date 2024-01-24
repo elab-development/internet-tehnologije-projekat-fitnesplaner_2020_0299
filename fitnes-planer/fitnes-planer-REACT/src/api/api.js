@@ -127,3 +127,16 @@ export async function logout() {
     localStorage.removeItem("token");
     return data;
 };
+
+export async function getWorkoutSuggestion(exercise='', type='', muscle='', equipment='', difficulty='') {
+    const link = `http://localhost:8000/api/getWorkoutSuggestion?name=${exercise}&type=${type}&muscle=${muscle}&equipment=${equipment}&difficulty=${difficulty}`;
+    const response = await fetch(link, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    
+    const data = await response.json();
+    return data;
+};
