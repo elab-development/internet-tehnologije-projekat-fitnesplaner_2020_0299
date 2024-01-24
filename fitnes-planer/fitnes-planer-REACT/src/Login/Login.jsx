@@ -11,8 +11,9 @@ function Login() {
         e.preventDefault();
 
         login(email, password).then((data) => {
-            console.log(data)
-            if (data['access_token']) window.location.reload();
+            if (data['access_token']) {
+                window.location.reload();
+            }
         });
 
         setEmail('');

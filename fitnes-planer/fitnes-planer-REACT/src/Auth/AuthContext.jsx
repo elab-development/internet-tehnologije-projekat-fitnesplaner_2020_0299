@@ -2,10 +2,12 @@ import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext({
     authenticated: false,
-    loading: true
+    loading: true,
+    role: null,
 });
 
 export default function AuthProvider({children}) {
+    const [role, setRole] = useState();
     const [authenticated, setAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -16,12 +18,13 @@ export default function AuthProvider({children}) {
     const checkAuthentication = () => {
         if (localStorage.getItem("token")) {
             setAuthenticated(true);
+            setRole(localStorage.getItem("role"));
         }
         setLoading(false);
     };
 
     return (
-        <AuthContext.Provider value={{ authenticated, loading }}>
+        <AuthContext.Provider value={{ authenticated, loading, role }}>
             { children }
         </AuthContext.Provider>
     );

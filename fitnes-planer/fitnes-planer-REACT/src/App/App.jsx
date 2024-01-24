@@ -15,11 +15,11 @@ import PredlogVezbi from "../Vezbe/PredlogVezbi.jsx";
 import { AuthContext } from '../Auth/AuthContext.jsx';
 
 function App() {
-  const { authenticated, loading } = useContext(AuthContext);
+  const { authenticated, loading, role } = useContext(AuthContext);
 
   if (loading) {
     return null;
-  }
+  };
 
   return (
     <Router>

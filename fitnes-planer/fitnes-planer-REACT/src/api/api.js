@@ -98,7 +98,10 @@ export async function login(email, password) {
     });
 
     const data = await response.json();
-    if (data['access_token']) localStorage.setItem("token", data['access_token']);
+    if (data['access_token']) {
+        localStorage.setItem("token", data['access_token']);
+        localStorage.setItem("role", data['role']);
+    }
     return data;
 };
 

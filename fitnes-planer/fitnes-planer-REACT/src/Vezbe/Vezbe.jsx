@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import './Vezbe.css';
+import { fetchExercises } from "../api/api.js";
 import img1 from './images/1.png'; // Import the image
 import img2 from './images/2.png'; // Import the image
 import img3 from './images/3.png'; // Import the image
@@ -12,9 +13,13 @@ import img7 from './images/7.png'; // Import the image
 import img8 from './images/8.png'; // Import the image
 
 function Vezbe() {
-
+  const [exercises, setExercises] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
+  useEffect(() => {
+    fetchExercises().then((data) => {setExercises(data.exercises); console.log(data.exercises)});
+  }, []);
 
   // Niz importovanih slika koji se prikazuje
   const photos = [img1, img2, img3, img4, img5, img6, img7, img8 /* ... jos URLova */];
@@ -29,36 +34,36 @@ function Vezbe() {
   };
 
   // PhotoZoom Component
-function PhotoZoom({ photo, onClose }) {
-  const animation = useSpring({ opacity: 1, from: { opacity: 0 } });
+  function PhotoZoom({ photo, onClose }) {
+    const animation = useSpring({ opacity: 1, from: { opacity: 0 } });
 
-  const handleArrowClick = (direction, event) => {
-    event.preventDefault(); // Prevent default button behavior
-    event.stopPropagation(); // Prevent click event from reaching the backdrop
-    changePhoto(direction);
-  };
+    const handleArrowClick = (direction, event) => {
+      event.preventDefault(); // Prevent default button behavior
+      event.stopPropagation(); // Prevent click event from reaching the backdrop
+      changePhoto(direction);
+    };
 
-  const handleClose = (event) => {
-    event.preventDefault(); // Prevent default behavior when closing the photo
-    onClose();
-  };
+    const handleClose = (event) => {
+      event.preventDefault(); // Prevent default behavior when closing the photo
+      onClose();
+    };
 
-  return (
-    <animated.div style={animation} className="backdrop" onClick={handleClose}>
-      <div className="zoomed-photo-container">
-        <animated.img style={animation} src={photo} alt="Zoomed" className="zoomed-photo" />
-        <div className="photo-navigation">
-          <button onClick={(e) => handleArrowClick('prev', e)}>&lt;</button>
-          <button onClick={(e) => handleArrowClick('next', e)}>&gt;</button>
+    return (
+      <animated.div style={animation} className="backdrop" onClick={handleClose}>
+        <div className="zoomed-photo-container">
+          <animated.img style={animation} src={photo} alt="Zoomed" className="zoomed-photo" />
+          <div className="photo-navigation">
+            <button onClick={(e) => handleArrowClick('prev', e)}>&lt;</button>
+            <button onClick={(e) => handleArrowClick('next', e)}>&gt;</button>
+          </div>
+
+          <div className="photo-indicator">
+            {currentPhotoIndex + 1} / {photos.length}
+          </div>
         </div>
-
-        <div className="photo-indicator">
-          {currentPhotoIndex + 1} / {photos.length}
-        </div>
-      </div>
-    </animated.div>
-  );
-}
+      </animated.div>
+    );
+  }
 
 
   // Photo Component
@@ -79,7 +84,7 @@ function PhotoZoom({ photo, onClose }) {
 
   // PhotoGallery Component
   function PhotoGallery({ photos, onSelect }) {
-   return (
+    return (
       <div className="photo-grid">
         {photos.map((photo, index) => (
           <Photo key={photo} src={photo} onClick={() => onSelect(photo)} index={index} />
@@ -91,7 +96,7 @@ function PhotoZoom({ photo, onClose }) {
 
   return (
     <div className="vezbe">
-    <h1> Vezbe </h1><br/><br/>
+      <h1> Vezbe </h1><br /><br />
 
       <PhotoGallery photos={photos} onSelect={setSelectedPhoto} />
       {selectedPhoto && <PhotoZoom photo={photos[currentPhotoIndex]} onClose={() => setSelectedPhoto(null)} />}
