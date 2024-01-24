@@ -100,7 +100,19 @@ export async function submitExercise(newExercise) {
 
     const data = await response.json();
     return data;
-}
+};
+
+export async function deleteExercise(id) {
+    const response = await fetch(`http://localhost:8000/api/exercises/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    const data = await response.json();
+    return data;
+};
 
 export async function login(email, password) {
     const response = await fetch(`http://localhost:8000/api/login`, {

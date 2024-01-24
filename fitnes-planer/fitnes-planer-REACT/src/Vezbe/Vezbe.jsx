@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import './Vezbe.css';
 import VezbaForma from "./VezbaForma.jsx";
-import { fetchExercises, submitExercise } from "../api/api.js";
+import { deleteExercise, fetchExercises, submitExercise } from "../api/api.js";
 import { AuthContext } from '../Auth/AuthContext.jsx';
 import benchpress from './images/benchpress.png'; // Import the image
 import crunches from './images/crunches.png'; // Import the image
@@ -38,7 +38,7 @@ function Vezbe() {
           <animated.img style={animation} src={photo} alt="Zoomed" className="zoomed-photo" />
 
           <div className="photo-indicator">
-            {currentPhotoIndex + 1} / {Object.keys(photos).length}
+            {currentPhotoIndex + 1} / {exercises.length}
           </div>
         </div>
       </animated.div>
@@ -62,6 +62,10 @@ function Vezbe() {
     );
   }
 
+  const handleDelete = (id) => {
+    deleteExercise(id.toString()).then(() => window.location.reload());
+  }
+
   // PhotoGallery Component
   function PhotoGallery({ photos, onSelect }) {
     return (
@@ -72,6 +76,9 @@ function Vezbe() {
               <Photo key={exercise.name} src={photos[exercise.name.replace(/\s+/g, '').toLowerCase()]} onClick={() => onSelect(photos[exercise.name.replace(/\s+/g, '').toLowerCase()])} index={index} />
             ) : <p style={{ margin: "145px 0" }}>(nema dostupne slike)</p>}
             <h2>{exercise.name}</h2>
+            {role == "admin" ? (
+              <button onClick={() => handleDelete(exercise.exercise_id)}>Obrisi</button>
+            ) : null}
           </div>
         ))}
       </div>
