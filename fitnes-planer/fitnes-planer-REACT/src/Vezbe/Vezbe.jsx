@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { useInView } from 'react-intersection-observer';
 import './Vezbe.css';
+import VezbaForma from "./VezbaForma.jsx";
 import { fetchExercises } from "../api/api.js";
+import { AuthContext } from '../Auth/AuthContext.jsx';
 import img1 from './images/1.png'; // Import the image
 import img2 from './images/2.png'; // Import the image
 import img3 from './images/3.png'; // Import the image
@@ -13,12 +15,13 @@ import img7 from './images/7.png'; // Import the image
 import img8 from './images/8.png'; // Import the image
 
 function Vezbe() {
+  const { role } = useContext(AuthContext);
   const [exercises, setExercises] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   useEffect(() => {
-    fetchExercises().then((data) => {setExercises(data.exercises); console.log(data.exercises)});
+    fetchExercises().then((data) => { setExercises(data.exercises); console.log(data.exercises) });
   }, []);
 
   // Niz importovanih slika koji se prikazuje
@@ -91,8 +94,11 @@ function Vezbe() {
         ))}
       </div>
     );
-  }
+  };
 
+  const handleSubmit = (newExercise) => {
+
+  };
 
   return (
     <div className="vezbe">
@@ -100,6 +106,10 @@ function Vezbe() {
 
       <PhotoGallery photos={photos} onSelect={setSelectedPhoto} />
       {selectedPhoto && <PhotoZoom photo={photos[currentPhotoIndex]} onClose={() => setSelectedPhoto(null)} />}
+
+      {role == "admin" ? (
+        <VezbaForma onAddExercise={handleSubmit} />
+      ) : null}
     </div>
   );
 }
