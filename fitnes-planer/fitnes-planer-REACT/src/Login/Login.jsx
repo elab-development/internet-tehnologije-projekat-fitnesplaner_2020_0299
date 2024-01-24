@@ -6,14 +6,22 @@ import "./login.css";
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setErrorMessage("");
+        setLoading(true);
 
         login(email, password).then((data) => {
             if (data['access_token']) {
                 window.location.reload();
             }
+            else {
+                setErrorMessage(data.message);
+            }
+            setLoading(false);
         });
 
         setEmail('');
@@ -45,9 +53,10 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button className="submit" type="submit" style={{ backgroundColor: "green" }}>Login</button>
+                    <p style={{ color: "red", justifyContent: "center", alignItems: "center" }}>{errorMessage}</p>
+                    <button disabled={loading} className="submit" type="submit" style={{ backgroundColor: "green" }}>Login</button>
                     <Link to="/register">
-                        <button className="submit" style={{ backgroundColor: "red" }}>Go to register</button>
+                        <button disabled={loading} className="submit" style={{ backgroundColor: "red" }}>Go to register</button>
                     </Link>
                 </form>
             </div>

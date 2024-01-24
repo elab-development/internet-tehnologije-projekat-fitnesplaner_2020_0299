@@ -10,6 +10,7 @@ function PredlogVezbi() {
     const [equipment, setEquipment] = useState();
     const [difficulty, setDifficulty] = useState();
     const [rows, setRows] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const columns = [
         { field: "exercise", headerName: "Ime vezbe", width: 250 },
@@ -21,6 +22,7 @@ function PredlogVezbi() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const tempRows = [];
+        setLoading(true);
 
         getWorkoutSuggestion(exercise, type, muscle, equipment, difficulty).then((data) => {
             data.forEach(suggestion => {
@@ -34,6 +36,7 @@ function PredlogVezbi() {
             });
 
             setRows(tempRows);
+            setLoading(false);
         });
     };
 
@@ -95,7 +98,7 @@ function PredlogVezbi() {
                             onChange={(e) => setDifficulty(e.target.value)}
                         />
                     </div>
-                    <button className="submit" type="submit" style={{ backgroundColor: "green" }}>Posalji</button>
+                    <button disabled={loading} className="submit" type="submit" style={{ backgroundColor: "green" }}>Posalji</button>
                 </form>
             </div>
         </div>

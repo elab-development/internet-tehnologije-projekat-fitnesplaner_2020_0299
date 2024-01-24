@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import { MenuItem, Select } from '@mui/material';
 import { fetchExercises } from '../api/api';
 
@@ -10,6 +11,8 @@ const WorkoutForm = ({ onAddWorkoutExercise }) => {
     const [weight, setWeight] = useState();
     const [sets, setSets] = useState();
     const [reps, setReps] = useState();
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         fetchExercises().then((data) => setExercises(data.exercises));
@@ -17,6 +20,25 @@ const WorkoutForm = ({ onAddWorkoutExercise }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if (exercise == '') {
+            setErrorMessage("Morate odabrati vezbu!");
+            return;
+        }
+        if (parseInt(weight) < 1) {
+            setErrorMessage("Tezina mora da bude pozitivan broj!");
+            return;
+        }
+        else if (parseInt(sets) < 1) {
+            setErrorMessage("Serije moraju da budu pozitivan broj!");
+            return;
+        }
+        else if (parseInt(reps) < 1) {
+            setErrorMessage("Ponavljanja moraju da budu pozitivan broj!");
+            return;
+        }
+
+        setLoading(true);
 
         // Create a workout object
         const newWorkoutExercise = {
@@ -78,8 +100,9 @@ const WorkoutForm = ({ onAddWorkoutExercise }) => {
                 required
                 style={{ marginBottom: '16px', backgroundColor: 'white' }}
             />
-
-            <Button sx={{ marginTop: "20px" }} type="submit" variant="contained" color="primary">
+            {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+        
+            <Button disabled={loading} sx={{ marginTop: "20px" }} type="submit" variant="contained" color="primary">
                 Dodaj vezbu u treningu
             </Button>
         </form>

@@ -7,11 +7,20 @@ function Login() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setLoading(true);
+        setErrorMessage("");
 
-        register(username, email, password).then((data) => console.log(data));
+        register(username, email, password).then((data) => {
+            if (data['error']) {
+                setErrorMessage(data['error']);
+            }
+            setLoading(false);
+        });
 
         setUsername('');
         setEmail('');
@@ -53,9 +62,10 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-                    <button className="submit" type="submit" style={{ backgroundColor: "green" }}>Register</button>
+                    <p style={{ color: "red" }}>{errorMessage}</p>
+                    <button disabled={loading} className="submit" type="submit" style={{ backgroundColor: "green" }}>Register</button>
                     <Link to="/login">
-                        <button className="submit" style={{ backgroundColor: "red" }}>Go to login</button>
+                        <button disabled={loading} className="submit" style={{ backgroundColor: "red" }}>Go to login</button>
                     </Link>
                 </form>
             </div>

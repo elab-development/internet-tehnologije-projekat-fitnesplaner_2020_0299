@@ -31,7 +31,7 @@ function Trening() {
                     <GridActionsCellItem
                         icon={<DeleteOutlineIcon />}
                         label="Obrisi"
-                        onClick={(params) => handleDeleteClick(params)}
+                        onClick={() => handleDeleteClick(params)}
                         color="inherit"
                     />
                 ];
@@ -57,8 +57,6 @@ function Trening() {
 
     const handleAddWorkoutExercise = (newWorkoutExercise) => {
         submitWorkoutExercise(id.toString(), newWorkoutExercise).then(() => window.location.reload());
-        console.log(id.toString());
-        console.log(newWorkoutExercise);
     };
 
     const handleDeleteClick = (params) => {

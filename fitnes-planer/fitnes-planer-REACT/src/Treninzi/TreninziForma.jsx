@@ -9,15 +9,18 @@ const WorkoutForm = ({ onAddWorkout }) => {
   const [notes, setNotes] = useState('');
   const [rating, setRating] = useState(0);
   const [ratingError, setRatingError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // Validation logic can be added here
     if (parseInt(rating) < 1 || parseInt(rating) > 5) {
-      setRatingError("Rating must be between 1 and 5");
+      setRatingError("Ocena mora da bude izmedju 1 i 5!");
       return;
     }
+
+    setLoading(true);
 
     setRatingError('');
 
@@ -81,7 +84,7 @@ const WorkoutForm = ({ onAddWorkout }) => {
       />
       {ratingError && <Alert severity="error">{ratingError}</Alert>}
 
-      <Button sx={{marginTop: "20px"}} type="submit" variant="contained" color="primary">
+      <Button disabled={loading} sx={{marginTop: "20px"}} type="submit" variant="contained" color="primary">
         Dodaj Trening
       </Button>
     </form>
